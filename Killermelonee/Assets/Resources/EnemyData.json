@@ -1,0 +1,26 @@
+{
+    "enemies": [
+        {
+            "name": "SkeletonArcher",
+            "health": 10,
+            "speed": 1,
+            "contactDamage": 5,
+            "projectileDamage": 10,
+            "XPGain": 50,
+            "shootRate": 1.2,
+            "ashAmount": [ 4, 6 ],
+            "prefPath" : "enemy/SkeletonArcher"
+        },
+        {
+            "name": "Zombie",
+            "health": 20,
+            "speed": 4,
+            "contactDamage": 10,
+            "projectileDamage": 0,
+            "XPGain": 100,
+            "shootRate": 0,
+            "ashAmount": [ 3, 5 ],
+            "prefPath": "enemy/Zombie"
+        }
+    ]
+}
