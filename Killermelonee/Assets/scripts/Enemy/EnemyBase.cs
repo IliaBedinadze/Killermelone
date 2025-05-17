@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Zenject.Asteroids;
 using Zenject.SpaceFighter;
 
 public class EnemyBase : MonoBehaviour
@@ -25,6 +26,12 @@ public class EnemyBase : MonoBehaviour
     {
         _player = player;
         _gamestate = gamestate;
+    }
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        _alive = true;
+        _enemyStats.ScaleEnemy(_gamestate.TakeCurrentScale);
     }
     protected virtual void Update()
     {

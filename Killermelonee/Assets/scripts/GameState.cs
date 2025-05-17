@@ -8,12 +8,15 @@ using Zenject;
 public class GameState : MonoBehaviour
 {
     private UI _ui;
+    private Rarity[] _roundsData;
+    private Player _player;
     [Inject]
-    public void Constructor(UI ui)
+    public void Constructor(UI ui, RoundsData data,Player player)
     {
         _ui = ui;
+        _roundsData = data.roundData;
+        _player = player;
     }
-    [NonSerialized]public State state;
     public enum State
     {
         playing,
@@ -21,22 +24,20 @@ public class GameState : MonoBehaviour
         roundOver,
         gameOver
     }
+    [NonSerialized]public State state;
+
     private IEnumerator Start()
     {
         state = State.pause;
         yield return new WaitUntil(() => Input.anyKeyDown);
         state = State.playing;
+        _ui.SetRound(_currentRound + 1);
     }
 
     [SerializeField] private Text timerText;
-    private RoundsData _roundsData;
     private int _currentRound = 0;
     public int TakeCurrentRound => _currentRound;
-    [Inject]
-    public void Container(RoundsData data)
-    {
-        _roundsData = data;
-    }
+    public float TakeCurrentScale => _roundsData[_currentRound].enemyScale;
 
     private float _time;
     private int _currentTime = 1;
@@ -46,10 +47,11 @@ public class GameState : MonoBehaviour
     {
         if(!_roundUp && state == State.playing)
         {
-            Timer(_roundsData.Rounds[_currentRound]);
+            Timer(_roundsData[_currentRound].roundTimer);
             _time += Time.deltaTime;
-            if (_roundsData.Rounds[_currentRound] == 0)
+            if (_roundsData[_currentRound].roundTimer == 0)
             {
+                CleanArena();
                 _roundUp = true;
                 state = State.roundOver;
                 _currentRound++;
@@ -58,7 +60,7 @@ public class GameState : MonoBehaviour
             if (_time > _currentTime)
             {
                 _currentTime++;
-                _roundsData.Rounds[_currentRound]--;
+                _roundsData[_currentRound].roundTimer--;
             }
         }
     }
@@ -77,5 +79,21 @@ public class GameState : MonoBehaviour
     public void NextRound(bool done)
     {
         _roundUp = done;
+        _ui.SetRound(_currentRound + 1);
+    }
+    private void CleanArena()
+    {
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("bullet");
+        foreach (GameObject bullet in bullets) Destroy(bullet);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        foreach(GameObject enemy in enemies) Destroy(enemy);
+
+        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("enemyBullet");
+        foreach(GameObject enemyBullet in enemyBullets) Destroy(enemyBullet);
+
+        GameObject[] currencies = GameObject.FindGameObjectsWithTag("currency");
+        foreach(GameObject currency in currencies) Destroy(currency);
+        _player.transform.position = Vector2.zero;
     }
 }

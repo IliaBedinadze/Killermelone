@@ -5,13 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class RoundsData
 {
-    public int currentRound;
-    public List<int> Rounds;
-    public Rarity[] rarityChanceByRound;
+    public Rarity[] roundData;
 }
 [System.Serializable]
 public class Rarity
 {
+    public int roundTimer;
     public int[] roundRarity;
     public int[] refreshCost;
+    public float enemyScale;
 }

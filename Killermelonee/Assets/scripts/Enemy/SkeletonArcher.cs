@@ -13,11 +13,6 @@ public class SkeletonArcher : EnemyBase
     private float _time = 0;
     private bool _delay = false;
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        _alive = true;
-    }
     protected override void Update()
     {
         base.Update();

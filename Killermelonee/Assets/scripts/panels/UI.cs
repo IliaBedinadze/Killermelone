@@ -11,8 +11,9 @@ public class UI : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameOver gameOverPanel;
     [SerializeField] private Shop shopPanel;
-    private float _score;
-    private bool _isChanging;
+    [SerializeField] private Text roundText;
+
+    private string _roundTextFormat = "round: {0}";
     private bool _panelActivated;
     private bool _gameOverActivated;
     private GameObject _CurrentPanel;
@@ -64,5 +65,9 @@ public class UI : MonoBehaviour
     public void PanelActivatedState(bool state)
     {
         _panelActivated = state;
+    }
+    public void SetRound(int round)
+    {
+        roundText.text = string.Format(_roundTextFormat, round);
     }
 }

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     {
         if (state)
         {
-            _ashAmount += amount;
+            _ashAmount += (int)(amount * _state.TakeCurrentScale);
             currencyText.text = _ashAmount.ToString();
         }
     }

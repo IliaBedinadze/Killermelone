@@ -14,6 +14,16 @@ public class Enemy
     public float shootRate;
     public int[] ashAmount;
     public string prefPath;
+
+    public void ScaleEnemy(float scale)
+    {
+        health *= scale;
+        speed *= scale;
+        contactDamage *= scale;
+        projectileDamage *= scale;
+        XPGain *= scale;
+        shootRate *= scale;
+    }
 }
 
 [System.Serializable]

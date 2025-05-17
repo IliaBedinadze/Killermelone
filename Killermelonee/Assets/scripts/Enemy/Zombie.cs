@@ -7,11 +7,6 @@ using GS = GameState.State;
 
 public class Zombie : EnemyBase
 {
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        _alive = true;
-    }
     protected override void Update()
     {
         base.Update();

@@ -45,7 +45,7 @@ public class Shop : MonoBehaviour
         _ui = ui;
         _player = player;
         _exceptionPanel = exceptionPanel;
-        _rarity = roundData.rarityChanceByRound[_state.TakeCurrentRound - 1];
+        _rarity = roundData.roundData[_state.TakeCurrentRound - 1];
     }
     private void Start()
     {
@@ -87,7 +87,6 @@ public class Shop : MonoBehaviour
                 InitializeRefresher();
             }
         }
-        Debug.Log(_rarity.refreshCost[_refresherCount]);
     }
     private void InitializeRefresher()
     {

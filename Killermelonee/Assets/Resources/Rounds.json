@@ -1,50 +1,64 @@
 {
-    "currentRound": 0 ,
-    "Rounds": [ 15, 20, 25, 30, 60, 35, 40, 45, 60, 100],
-    "rarityChanceByRound": [
-        {
+    "roundData": [
+        { 
+            "roundTimer": 15,
             "roundRarity": [ 50, 90, 98, 100, 101 ],
-            "refreshCost": [1 , 2, 3, 5, 8]
+            "refreshCost": [ 1, 2, 3, 5, 8 ],
+            "enemyScale": 1
         },
-        {
+        { 
+            "roundTimer": 20,
             "roundRarity": [ 50, 90, 98, 100, 101 ],
-            "refreshCost": [ 1, 3, 5, 8, 10 ]
+            "refreshCost": [ 1, 3, 5, 8, 10 ],
+            "enemyScale": 1.2
         },
-        {
+        { 
+            "roundTimer": 25,
             "roundRarity": [ 45, 85, 95, 99, 100 ],
-            "refreshCost": [ 2, 4, 6, 9, 11 ]
+            "refreshCost": [ 2, 4, 6, 9, 11 ],
+            "enemyScale": 1.4
         },
-        {
+        { 
+            "roundTimer": 30,
             "roundRarity": [ 45, 85, 95, 99, 100 ],
-            "refreshCost": [ 3, 5, 7, 10, 12 ]
+            "refreshCost": [ 3, 5, 7, 10, 12 ],
+            "enemyScale": 1.6
         },
-        {
+        { 
+            "roundTimer": 60,
             "roundRarity": [ 35, 75, 90, 97, 100 ],
-            "refreshCost": [ 3, 6, 8, 11, 13 ]
+            "refreshCost": [ 3, 6, 8, 11, 13 ],
+            "enemyScale": 1.8
         },
-        {
+        { 
+            "roundTimer": 35,
             "roundRarity": [ 30, 60, 80, 94, 100 ],
-            "refreshCost": [ 4, 7, 9, 12, 14 ]
+            "refreshCost": [ 4, 7, 9, 12, 14 ],
+            "enemyScale": 2
         },
-        {
+        { 
+            "roundTimer": 40,
             "roundRarity": [ 25, 50, 75, 90, 100 ],
-            "refreshCost": [ 5, 8, 10, 13, 15 ]
+            "refreshCost": [ 5, 8, 10, 13, 15 ],
+            "enemyScale": 2.2
         },
-        {
+        { 
+            "roundTimer": 45,
             "roundRarity": [ 20, 40, 60, 80, 100 ],
-            "refreshCost": [ 5, 9, 11, 14, 17 ]
+            "refreshCost": [ 5, 9, 11, 14, 17 ],
+            "enemyScale": 2.4
         },
-        {
+        { 
+            "roundTimer": 60,
             "roundRarity": [ 20, 40, 60, 80, 100 ],
-            "refreshCost": [ 6, 10, 12, 15, 18 ]
+            "refreshCost": [ 6, 10, 12, 15, 18 ],
+            "enemyScale": 2.6
         },
-        {
+        { 
+            "roundTimer": 100,
             "roundRarity": [ 20, 20, 60, 80, 100 ],
-            "refreshCost": [ 6, 11, 13, 17, 20 ]
-        },
-        {
-            "roundRarity": [ 20, 20, 60, 80, 100 ],
-            "refreshCost": [ 7, 12, 15, 18, 22 ]
+            "refreshCost": [ 6, 11, 13, 17, 20 ],
+            "enemyScale": 3
         }
     ]
 }
