@@ -65,6 +65,7 @@ public class Shop : MonoBehaviour
     {
         _state.state = GS.playing;
         _state.NextRound(false);
+        _state.SaveGame();
         Destroy(gameObject);
     }
     private void Refresher(bool start)

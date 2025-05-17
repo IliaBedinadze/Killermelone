@@ -6,4 +6,5 @@ using UnityEngine;
 public class SceneManagementSc : ScriptableObject
 {
     public string SceneToLoad;
+    public bool Continue;
 }

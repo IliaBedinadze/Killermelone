@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Zenject;
 using Zenject.Asteroids;
 using GS = GameState.State;
+using System.IO;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class PauseMenu : MonoBehaviour
     }
     private void ToMainMenu()
     {
+        string json = JsonUtility.ToJson(_gameState.SaveData);
+        File.WriteAllText(Application.persistentDataPath + "/save.json",json);
         _sceneManagement.SceneToLoad = "MainMenu";
         SceneManager.LoadScene("LoadingScreen");
     }

@@ -1,21 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 public class GameState : MonoBehaviour
 {
+    [NonSerialized] public Save SaveData = new Save();
     private UI _ui;
     private Rarity[] _roundsData;
     private Player _player;
+    private SceneManagementSc _management;
     [Inject]
-    public void Constructor(UI ui, RoundsData data,Player player)
+    public void Constructor(UI ui, RoundsData data,Player player,SceneManagementSc managemant)
     {
         _ui = ui;
         _roundsData = data.roundData;
         _player = player;
+        _management = managemant;
     }
     public enum State
     {
@@ -26,25 +31,42 @@ public class GameState : MonoBehaviour
     }
     [NonSerialized]public State state;
 
-    private IEnumerator Start()
-    {
-        state = State.pause;
-        yield return new WaitUntil(() => Input.anyKeyDown);
-        state = State.playing;
-        _ui.SetRound(_currentRound + 1);
-    }
-
     [SerializeField] private Text timerText;
     private int _currentRound = 0;
     public int TakeCurrentRound => _currentRound;
+    public bool ContinueState => _management.Continue;
     public float TakeCurrentScale => _roundsData[_currentRound].enemyScale;
 
     private float _time;
     private int _currentTime = 1;
     private string _timerTextFormat = "{1}{0}";
     private bool _roundUp = false;
+    private IEnumerator Start()
+    {
+        SaveGame();
+        if (ContinueState)
+        {
+            string path = Application.persistentDataPath + "/save.json";
+            if (File.Exists(Application.persistentDataPath + "/save.json"))
+            {
+                string json = File.ReadAllText(path);
+                SaveData = JsonUtility.FromJson<Save>(json);
+                _currentRound = SaveData.currentRound;
+                WeaponData left = SaveData.LeftHand != null ? SaveData.LeftHand : null;
+                WeaponData right = SaveData.RightHand != null ? SaveData.RightHand : null;
+                _player.InitializeWeapon(left,right);
+                _player.InitializePlayerData(SaveData.currMaxHP,SaveData.currMaxXP,SaveData.ashAmount);
+            }
+        }
+        state = State.pause;
+        yield return new WaitUntil(() => Input.anyKeyDown);
+        state = State.playing;
+        _ui.SetRound(_currentRound + 1);
+    }
     private void Update()
     {
+        if(SaveData.LeftHand != null)
+            Debug.Log(SaveData.LeftHand.currentLevel + " state");
         if(!_roundUp && state == State.playing)
         {
             Timer(_roundsData[_currentRound].roundTimer);
@@ -63,6 +85,11 @@ public class GameState : MonoBehaviour
                 _roundsData[_currentRound].roundTimer--;
             }
         }
+    }
+    public void SaveGame()
+    {
+        _player.SaveData();
+        SaveData.currentRound = _currentRound;
     }
     private void Timer(int amount)
     {

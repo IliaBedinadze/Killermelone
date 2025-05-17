@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button continueButton;
 
     private SceneManagementSc _sceneManagementSc;
     [Inject]
@@ -19,17 +20,14 @@ public class MainMenu : MonoBehaviour
     }
     private void Start()
     {
-        playButton.onClick.AddListener(delegate { PlayClick(); });
+        playButton.onClick.AddListener(delegate { PlayClick(false); });
+        continueButton.onClick.AddListener(delegate { PlayClick(true); });
         exitButton.onClick.AddListener(delegate { Application.Quit(); });
-        if(_sceneManagementSc == null)
-        {
-            Debug.Log("matata");
-        }
     }
-    private void PlayClick()
+    private void PlayClick(bool _continue)
     {
         _sceneManagementSc.SceneToLoad = "GameScene";
-        Debug.Log(_sceneManagementSc.SceneToLoad);
         SceneManager.LoadScene("LoadingScreen");
+        _sceneManagementSc.Continue = _continue;
     }
 }
