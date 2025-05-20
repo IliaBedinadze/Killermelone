@@ -22,7 +22,6 @@ public class Enemy
         contactDamage *= scale;
         projectileDamage *= scale;
         XPGain *= scale;
-        shootRate *= scale;
     }
 }
 
@@ -30,5 +29,6 @@ public class Enemy
 public class EnemyList
 {
     public List<Enemy> enemies;
+    public List<Enemy> Bosses;
 }
 

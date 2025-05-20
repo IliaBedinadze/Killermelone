@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private int maxHP = 100;
     private float _currentXp;
     private float _maxXp = 1000;
-    [NonSerialized] public int _ashAmount = 100;
+    [NonSerialized] public int _ashAmount;
 
     private GameState _state;
     private WeaponList _weaponList;
@@ -33,8 +33,9 @@ public class Player : MonoBehaviour
         _weaponList = list;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.1f);
         if (!_state.ContinueState)
         {
             var weapon = _weaponList.Weapons.Find(x => x.name == "pistol");
@@ -49,8 +50,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if(leftHand.transform.childCount != 0)
-            Debug.Log(leftHand.GetComponentInChildren<WeaponBase>().weaponData.currentLevel);
         if(_state.state == GS.playing)
         {
             float verticalMove = Input.GetAxis("Vertical");

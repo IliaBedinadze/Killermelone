@@ -56,6 +56,7 @@ public class GameState : MonoBehaviour
                 WeaponData right = SaveData.RightHand != null ? SaveData.RightHand : null;
                 _player.InitializeWeapon(left,right);
                 _player.InitializePlayerData(SaveData.currMaxHP,SaveData.currMaxXP,SaveData.ashAmount);
+                _management.Continue = false;
             }
         }
         state = State.pause;
@@ -65,8 +66,6 @@ public class GameState : MonoBehaviour
     }
     private void Update()
     {
-        if(SaveData.LeftHand != null)
-            Debug.Log(SaveData.LeftHand.currentLevel + " state");
         if(!_roundUp && state == State.playing)
         {
             Timer(_roundsData[_currentRound].roundTimer);

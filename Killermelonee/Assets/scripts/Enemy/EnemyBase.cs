@@ -9,11 +9,11 @@ public class EnemyBase : MonoBehaviour
 {
     [Inject]
     protected CurrencyFactory _currencyFactory;
-    [SerializeField] protected string ID;
 
     protected bool _underLaser;
     protected float _laserDamage;
-    protected bool delay = false;
+    protected bool laserDelay = false;
+    protected float _attackDelayTimer;
 
     protected AudioSource _audioSource;
     protected bool _alive;
@@ -27,18 +27,19 @@ public class EnemyBase : MonoBehaviour
         _player = player;
         _gamestate = gamestate;
     }
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         _alive = true;
+        _attackDelayTimer = _enemyStats.shootRate;
         _enemyStats.ScaleEnemy(_gamestate.TakeCurrentScale);
     }
     protected virtual void Update()
     {
-        if (_underLaser && !delay)
+        if (_underLaser && !laserDelay)
         {
             TakeDamage(_laserDamage);
-            delay = true;
+            laserDelay = true;
             StartCoroutine(Delay());
         }
     }
@@ -74,11 +75,25 @@ public class EnemyBase : MonoBehaviour
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(0.2f);
-        delay = false;
+        laserDelay = false;
     }
     public void HittenByLaser(bool statement,float damageAmount)
     {
         _underLaser = statement;
         _laserDamage = damageAmount;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            _player.GetComponent<Player>().TakeDamage(_enemyStats.contactDamage);
+            TakeDamage(_enemyStats.contactDamage);
+            Debug.Log("teleport");
+        }
+    }
+}
+
+public interface ICollisionHandler
+{
+    public void SentCollisionInfo(bool collided);
 }

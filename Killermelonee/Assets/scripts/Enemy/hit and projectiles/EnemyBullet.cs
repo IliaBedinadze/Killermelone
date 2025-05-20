@@ -9,8 +9,8 @@ public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     private Transform _player;
-    private Vector2 _direction;
     private GameState _gameState;
+    [NonSerialized] public Vector2 direction;
     [NonSerialized]public float damage;
     [SerializeField] private float lifeTime;
     private float _time;
@@ -22,8 +22,7 @@ public class EnemyBullet : MonoBehaviour
     }
     private void Start()
     {
-        _direction = ((Vector2)_player.position - (Vector2)transform.position).normalized;
-        float lookAngle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        float lookAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,lookAngle);
     }
     private void Update()
@@ -31,7 +30,7 @@ public class EnemyBullet : MonoBehaviour
         if(_gameState.state == GS.playing)
         {
             _time += Time.deltaTime;
-            transform.position = transform.position + (Vector3)_direction * speed * Time.deltaTime;
+            transform.position = transform.position + (Vector3)direction * speed * Time.deltaTime;
             if (_time >= lifeTime)
             {
                 Destroy(gameObject);

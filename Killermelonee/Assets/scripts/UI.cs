@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,7 +36,7 @@ public class UI : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_gameOverActivated)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_panelActivated)
             {
@@ -56,6 +57,11 @@ public class UI : MonoBehaviour
         {
             _gameOverActivated = true;
             _CurrentPanel = _container.InstantiatePrefab(gameOverPanel.gameObject);
+            string path = Application.persistentDataPath + "/save.json";
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
     }
     public void CreateShopPanel()

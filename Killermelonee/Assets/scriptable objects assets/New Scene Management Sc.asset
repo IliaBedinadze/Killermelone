@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2127634e0b5174e939122133466c50, type: 3}
   m_Name: New Scene Management Sc
   m_EditorClassIdentifier: 
-  SceneToLoad: 
+  SceneToLoad: GameScene
+  Continue: 0

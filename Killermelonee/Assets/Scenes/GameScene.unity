@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 135055614}
   - component: {fileID: 135055617}
   - component: {fileID: 135055618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -962,7 +962,7 @@ Camera:
   far clip plane: 20.4
   field of view: 40
   orthographic: 1
-  orthographic size: 17
+  orthographic size: 21
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1354,7 +1354,7 @@ MonoBehaviour:
     Bullet: {fileID: -889652591814454433, guid: 6ee960712e4df90458d9f86d46babf28, type: 3}
   - Name: revolver
     Bullet: {fileID: -889652591814454433, guid: 6ee960712e4df90458d9f86d46babf28, type: 3}
-  - Name: minuGun
+  - Name: miniGun
     Bullet: {fileID: -889652591814454433, guid: 6ee960712e4df90458d9f86d46babf28, type: 3}
   - Name: awp
     Bullet: {fileID: -889652591814454433, guid: 6ee960712e4df90458d9f86d46babf28, type: 3}
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_Follow: {fileID: 135055616}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 17
+    OrthographicSize: 21
     NearClipPlane: -17.5
     FarClipPlane: 20.4
     Dutch: 0
@@ -2564,7 +2564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1437792205}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: weapon 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2758,7 +2758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480693518}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: weapon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2847,7 +2847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549203659}
   - component: {fileID: 1549203660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: watermelone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3451,7 +3451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925387542
 Transform:
   m_ObjectHideFlags: 0
@@ -3592,7 +3592,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyJsonFile: {fileID: 4900000, guid: c9dfa0f4ce729ab4c9962b2b73dd10d7, type: 3}
   _enemyBullet: {fileID: -5900614952112378415, guid: 924e577710d90f1478c3bd7a0605aa9e, type: 3}
+  _bossDagger: {fileID: 0}
   _currency: {fileID: 4304910957177777655, guid: d0958dfb2258eb54597882dcce953ca2, type: 3}
+  _enemyBullets:
+  - name: SkeletonArcher
+    EnemyBullet: {fileID: -5900614952112378415, guid: 924e577710d90f1478c3bd7a0605aa9e, type: 3}
+  - name: VampireLord
+    EnemyBullet: {fileID: -7136426575228782590, guid: 1e60cbff64a1aa84e957082593324487, type: 3}
 --- !u!1 &2130836276
 GameObject:
   m_ObjectHideFlags: 0

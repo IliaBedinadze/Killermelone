@@ -19,7 +19,6 @@ public class LoadingScene : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LoadSceneAsync(_scene.SceneToLoad));
-        Debug.Log(_scene.SceneToLoad);
     }
     private IEnumerator LoadSceneAsync(string scene)
     {
