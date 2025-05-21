@@ -99,11 +99,11 @@ public class Shop : MonoBehaviour
         foreach (Button button in _shopItems)
         {
             string json = JsonUtility.ToJson(RandomWeapon());
-            button.GetComponent<WeaponBase>().weaponData = JsonUtility.FromJson<WeaponData>(json);
-            button.onClick.AddListener(delegate { BuyWeapon(button.GetComponent<WeaponBase>()); });
+            button.GetComponent<WeaponIcon>().weaponData = JsonUtility.FromJson<WeaponData>(json);
+            button.onClick.AddListener(delegate { BuyWeapon(button.GetComponent<WeaponIcon>()); });
         }
     }
-    private void BuyWeapon(WeaponBase weapon)
+    private void BuyWeapon(WeaponIcon weapon)
     {
         if (weapon.weaponData.TakeCurrentPrice <= _player._ashAmount)
         {

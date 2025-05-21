@@ -33,14 +33,8 @@ public class Player : MonoBehaviour
         _weaponList = list;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSeconds(0.1f);
-        if (!_state.ContinueState)
-        {
-            var weapon = _weaponList.Weapons.Find(x => x.name == "pistol");
-            InitializeWeapon(weapon, weapon);
-        }
         hpBar.maxValue = maxHP;
         hpBar.value = HP;
         hPText.text = HP.ToString();
@@ -159,5 +153,11 @@ public class Player : MonoBehaviour
         _currentXp = currMaxXP[0];
         _maxXp = currMaxXP[1];
         _ashAmount = ashamount;
+    }
+    public void InitializeChoozenWeapon(string[] weaponNames)
+    {
+        var weaponLeft = _weaponList.Weapons.Find(x => x.name == weaponNames[0]);
+        var weaponRight = _weaponList.Weapons.Find(x => x.name == weaponNames[1]);
+        InitializeWeapon(weaponLeft, weaponRight);
     }
 }

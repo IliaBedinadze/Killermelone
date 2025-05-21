@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameOver gameOverPanel;
     [SerializeField] private Shop shopPanel;
     [SerializeField] private Text roundText;
+    [SerializeField] private ChooseWeaponPanel chooseWeaponPanel;
 
     private string _roundTextFormat = "round: {0}";
     private bool _panelActivated;
@@ -75,5 +76,10 @@ public class UI : MonoBehaviour
     public void SetRound(int round)
     {
         roundText.text = string.Format(_roundTextFormat, round);
+    }
+    public void ChooseWeaponPanelActivation()
+    {
+        var panel = _container.InstantiatePrefab(chooseWeaponPanel.gameObject);
+        panel.transform.SetParent(transform, false);
     }
 }

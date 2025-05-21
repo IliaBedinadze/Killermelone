@@ -584,6 +584,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 2563208449919321603, guid: 8eb6cc6ea2f1bc64bb0a016e213f2713, type: 3}
   shopPanel: {fileID: 878141715408429780, guid: 60f620c6656b8c44392d87bf4217d372, type: 3}
   roundText: {fileID: 1303377820}
+  chooseWeaponPanel: {fileID: 5977678881059201101, guid: f8bac22c8ff672847aa8b830386a9a8b, type: 3}
 --- !u!114 &235110545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3451,7 +3452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1925387542
 Transform:
   m_ObjectHideFlags: 0

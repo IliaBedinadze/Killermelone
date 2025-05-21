@@ -152,6 +152,10 @@ PrefabInstance:
       propertyPath: forSell
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -260,6 +264,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: forSell
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -372,6 +380,10 @@ PrefabInstance:
       propertyPath: forSell
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -482,6 +494,10 @@ PrefabInstance:
       propertyPath: forSell
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -590,6 +606,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: forSell
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -706,6 +726,10 @@ PrefabInstance:
       propertyPath: forSell
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -816,6 +840,10 @@ PrefabInstance:
       propertyPath: forSell
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -924,6 +952,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: forSell
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: iconType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

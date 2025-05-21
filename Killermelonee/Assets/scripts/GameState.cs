@@ -41,7 +41,7 @@ public class GameState : MonoBehaviour
     private int _currentTime = 1;
     private string _timerTextFormat = "{1}{0}";
     private bool _roundUp = false;
-    private IEnumerator Start()
+    private void Start()
     {
         SaveGame();
         if (ContinueState)
@@ -59,9 +59,11 @@ public class GameState : MonoBehaviour
                 _management.Continue = false;
             }
         }
-        state = State.pause;
-        yield return new WaitUntil(() => Input.anyKeyDown);
-        state = State.playing;
+        else
+        {
+            _ui.ChooseWeaponPanelActivation();
+            state = State.pause;
+        }
         _ui.SetRound(_currentRound + 1);
     }
     private void Update()

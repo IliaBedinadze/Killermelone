@@ -149,8 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9330395ee6f3cfb4187c26346e3b9a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconType: 0
   Price: {fileID: 5257254088956141129}
   weaponLevelText: {fileID: 4168424589777847993}
+  currencyImage: {fileID: 4513442324220464226}
+  forSell: 0
 --- !u!1 &3467383608410367826
 GameObject:
   m_ObjectHideFlags: 0
