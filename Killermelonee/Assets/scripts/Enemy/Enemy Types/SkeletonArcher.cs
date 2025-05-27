@@ -8,11 +8,22 @@ public class SkeletonArcher : EnemyBase
 {
     [Inject]
     private EnemyBulletFactory _enemyBulletFactory;
-    private bool _hasShooten = false;
+    private bool _hasShooten = true;
 
     private float _time = 0;
     private bool _attackDelay = true;
 
+
+    protected override void Start()
+    {
+        base.Start();
+        StartCoroutine(Delay());
+    }
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
+        _hasShooten = false;
+    }
     protected override void Update()
     {
         base.Update();
@@ -39,6 +50,7 @@ public class SkeletonArcher : EnemyBase
         float shootAnimation = stateInfo.length;
 
         Vector2 direction = (_player.transform.position - transform.position).normalized;
+        Debug.Log(_enemyStats.name);
         var go = _enemyBulletFactory.Create( direction, _enemyStats.projectileDamage,_enemyStats.name);
         go.transform.position = transform.position;
 

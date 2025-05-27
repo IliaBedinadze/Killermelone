@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c9a6459f81036429e7f8dcb646e0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: SkeletonWarrior
   lookPoint: {fileID: 8334363210445350319}
   hitPoint: {fileID: 8765391027679108300}
   hitProjectile: {fileID: 2107717438793280304, guid: 3fb338ce76dc12a448d1ad74bcfa14e4, type: 3}

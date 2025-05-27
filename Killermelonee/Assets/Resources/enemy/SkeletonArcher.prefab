@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aeb1cc8e8828ea4f8a0e8ac9481c185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: SkeletonArcher
 --- !u!50 &7186169871312040352
 Rigidbody2D:
   serializedVersion: 4

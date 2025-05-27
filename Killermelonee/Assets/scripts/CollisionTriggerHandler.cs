@@ -11,20 +11,20 @@ public class CollisionTriggerHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "wall" || collision.tag == "Player")
-            _isTriggered = true;
         if (collision.tag == target)
         {
             handle.GetComponent<ICollisionHandler>().SentCollisionInfo(true);
         }
+        if( target == "" && (collision.tag == "wall" || collision.tag == "Player"))
+            _isTriggered = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "wall" || collision.tag == "Player")
-            _isTriggered = false;
         if (collision.tag == target)
         {
             handle.GetComponent<ICollisionHandler>().SentCollisionInfo(false);
         }
+        if( target == "" &&  (collision.tag == "wall" || collision.tag == "Player"))
+            _isTriggered = false;
     }
 }

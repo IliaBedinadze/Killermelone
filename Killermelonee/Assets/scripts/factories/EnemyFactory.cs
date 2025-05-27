@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class EnemyFactory : PlaceholderFactory<EnemyBase>
+public class EnemyFactory : PlaceholderFactory<string,string,EnemyBase>
 {
     
 }

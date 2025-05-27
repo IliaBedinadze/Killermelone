@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using static UnityEditor.Progress;
 
 public class EnemyInstaller : MonoInstaller
 {
@@ -15,42 +16,46 @@ public class EnemyInstaller : MonoInstaller
     public class EnemyBullets
     {
         public string name;
-        public EnemyBullet EnemyBullet;
+        public GameObject EnemyBullet;
     }
     [SerializeField] private EnemyBullets[] _enemyBullets;
-    private GameObject _choosenBullet;
-
     public override void InstallBindings()
     {
         var enemyList = JsonUtility.FromJson<EnemyList>(enemyJsonFile.text);
         Container.Bind<EnemyList>().FromInstance(enemyList).AsSingle();
 
-
-        Container.BindFactory<EnemyBase, EnemyFactory>().
-            FromMethod((container) =>
+        // factory that spawns enemy by name
+        Container.BindFactory<string,string,EnemyBase, EnemyFactory>().
+            FromMethod((container, enemyName, enemyType) =>
             {
-                int i = UnityEngine.Random.Range(0,enemyList.enemies.Count);
-
-                var enemy = container.InstantiatePrefab(Resources.Load<GameObject>(enemyList.enemies[i].prefPath));
+                GameObject enemy = new GameObject();
+                if(enemyType == "ordinary")
+                    enemy = container.InstantiatePrefab(Resources.Load<GameObject>(enemyList.enemies.Find(x => x.name == enemyName).prefPath));
+                else if(enemyType =="Boss")
+                    enemy = container.InstantiatePrefab(Resources.Load<GameObject>(enemyList.Bosses.Find(x => x.name == enemyName).prefPath));
                 var enemystats = enemy.GetComponent<EnemyBase>();
 
-                string json = JsonUtility.ToJson(enemyList.enemies[i]);
+                // compress to json and back to let every enemy have their own stats(otherway they ref to one source)
+                string json = JsonUtility.ToJson(enemyList.enemies.Find(x => x.name == enemyName));
                 enemystats.SetStats(JsonUtility.FromJson<Enemy>(json));
                 container.Inject(enemystats);
                 return enemystats;
             });
-        Container.BindFactory<Vector2,float,string, EnemyBullet, EnemyBulletFactory>().
-            FromMethod((container,direction , damage, enemy) =>
+        // creating enemy bullets by direction to player(vector2), enemy name to know wich bullet take from _enemyBullets 
+        // and enemy also set damage for this bullet
+        Container.BindFactory<Vector2, float, string, EnemyBullet, EnemyBulletFactory>().
+            FromMethod((container, direction, damage, enemy) =>
             {
-                _choosenBullet = null;
-                foreach(var item in _enemyBullets)
+                int index = 0;
+                for(int i = 0; i < _enemyBullets.Length;i++)
                 {
-                    if(item.name == enemy)
+                    if (_enemyBullets[i].name == enemy)
                     {
-                        _choosenBullet = container.InstantiatePrefab(item.EnemyBullet);
+                        index = i; break;
                     }
                 }
-                var bullet = _choosenBullet.GetComponent<EnemyBullet>();
+                var choosenBullet = container.InstantiatePrefab(_enemyBullets[index].EnemyBullet);
+                var bullet = choosenBullet.GetComponent<EnemyBullet>();
                 bullet.direction = direction;
                 bullet.damage = damage;
                 container.Inject(bullet);

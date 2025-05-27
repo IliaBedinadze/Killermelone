@@ -11,16 +11,18 @@ public class GameState : MonoBehaviour
 {
     [NonSerialized] public Save SaveData = new Save();
     private UI _ui;
-    private Rarity[] _roundsData;
+    private RoundStats[] _roundsData;
     private Player _player;
     private SceneManagementSc _management;
+    private EnemySpawnerController _enemySpawnerController;
     [Inject]
-    public void Constructor(UI ui, RoundsData data,Player player,SceneManagementSc managemant)
+    public void Constructor(UI ui, RoundsData data,Player player,SceneManagementSc managemant,EnemySpawnerController controller)
     {
         _ui = ui;
         _roundsData = data.roundData;
         _player = player;
         _management = managemant;
+        _enemySpawnerController = controller;
     }
     public enum State
     {
@@ -36,6 +38,7 @@ public class GameState : MonoBehaviour
     public int TakeCurrentRound => _currentRound;
     public bool ContinueState => _management.Continue;
     public float TakeCurrentScale => _roundsData[_currentRound].enemyScale;
+    public EnemyByRound TakeEnemyByRound => _roundsData[_currentRound].enemyByRound;
 
     private float _time;
     private int _currentTime = 1;
@@ -79,6 +82,7 @@ public class GameState : MonoBehaviour
                 state = State.roundOver;
                 _currentRound++;
                 _ui.CreateShopPanel();
+                _enemySpawnerController.firstHoard = true;
             }
             if (_time > _currentTime)
             {
@@ -107,6 +111,8 @@ public class GameState : MonoBehaviour
     public void NextRound(bool done)
     {
         _roundUp = done;
+        if (TakeCurrentRound == 10)
+            _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
     }
     private void CleanArena()

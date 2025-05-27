@@ -28,7 +28,7 @@ public class Shop : MonoBehaviour
     private GameObject _CurrentShop;
     private Button[] _shopItems;
 
-    private Rarity _rarity;
+    private RoundStats _roundStats;
     private GameState _state;
     private UI _ui;
     private Player _player;
@@ -45,7 +45,7 @@ public class Shop : MonoBehaviour
         _ui = ui;
         _player = player;
         _exceptionPanel = exceptionPanel;
-        _rarity = roundData.roundData[_state.TakeCurrentRound - 1];
+        _roundStats = roundData.roundData[_state.TakeCurrentRound - 1];
     }
     private void Start()
     {
@@ -76,9 +76,9 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            if (_rarity.refreshCost[_refresherCount] <= _player._ashAmount)
+            if (_roundStats.refreshCost[_refresherCount] <= _player._ashAmount)
             {
-                _player._ashAmount -= _rarity.refreshCost[_refresherCount];
+                _player._ashAmount -= _roundStats.refreshCost[_refresherCount];
                 ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
                 Destroy(_CurrentShop);
                 if (_refresherCount < 4)
@@ -94,7 +94,7 @@ public class Shop : MonoBehaviour
         _CurrentShop = container.InstantiatePrefab(shopItems);
         _CurrentShop.transform.SetParent(gameObject.transform, false);
         _shopItems = _CurrentShop.GetComponentsInChildren<Button>();
-        refresherText.text = string.Format(_refresherFormat, _rarity.refreshCost[_refresherCount]);
+        refresherText.text = string.Format(_refresherFormat, _roundStats.refreshCost[_refresherCount]);
 
         foreach (Button button in _shopItems)
         {
@@ -209,7 +209,7 @@ public class Shop : MonoBehaviour
     }
     private WeaponData RandomWeapon()
     {
-        var rarity = GetRandomRarity(_rarity.roundRarity);
+        var rarity = GetRandomRarity(_roundStats.roundRarity);
         var i = Random.Range(0, _weaponList.Count);
 
         WeaponData weapon = _weaponList[i];

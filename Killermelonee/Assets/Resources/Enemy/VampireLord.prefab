@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 261634625424448634}
   - component: {fileID: -3549756691322129013}
   m_Layer: 6
-  m_Name: Vampire
+  m_Name: VampireLord
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78597feda2d8c4e43adf278745399d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: VampireLord
   shootPoint: {fileID: 2327472877553936697}
   shootRotationPoint: {fileID: 7012826021625796493}
   TeleportPoints:

@@ -9,6 +9,7 @@ public class EnemyBase : MonoBehaviour
 {
     [Inject]
     protected CurrencyFactory _currencyFactory;
+    public string ID;
 
     protected bool _underLaser;
     protected float _laserDamage;

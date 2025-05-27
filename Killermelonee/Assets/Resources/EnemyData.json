@@ -9,7 +9,7 @@
             "XPGain": 50,
             "shootRate": 1.2,
             "ashAmount": [ 4, 6 ],
-            "prefPath": "enemy/SkeletonArcher"
+            "prefPath": "Enemy/SkeletonArcher"
         },
         {
             "name": "Zombie",
@@ -20,7 +20,7 @@
             "XPGain": 100,
             "shootRate": 0,
             "ashAmount": [ 3, 5 ],
-            "prefPath": "enemy/Zombie"
+            "prefPath": "Enemy/Zombie"
         },
         {
             "name": "SkeletonWarrior",
@@ -31,7 +31,7 @@
             "XPGain": 70,
             "shootRate": 2.2,
             "ashAmount": [ 4, 7 ],
-            "prefPath": "enemy/SkeletonWarrior"
+            "prefPath": "Enemy/SkeletonWarrior"
         }
     ],
     "Bosses": [
@@ -44,7 +44,7 @@
             "XPGain": 3000,
             "shootRate": 2,
             "ashAmount": [ 100, 150 ],
-            "prefPath": "enemy/VampireLord"
+            "prefPath": "Enemy/VampireLord"
         }
     ]
 }
