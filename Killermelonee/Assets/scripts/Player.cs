@@ -5,24 +5,32 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.UI;
 using GS = GameState.State;
+using UniRx;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private Slider hpBar;
-    [SerializeField] private Text hPText;
-    [SerializeField] private Slider xpBar;
-    [SerializeField] private Text currencyText;
     [SerializeField] private GameObject lvlUpAnim;
     public Transform leftHand;
     public Transform rightHand;
 
-    [NonSerialized] public int HP = 100;
-    private int maxHP = 100;
-    private float _currentXp;
-    private float _maxXp = 1000;
+    private readonly ReactiveProperty<int> hp = new ReactiveProperty<int>(100);
+    public IReadOnlyReactiveProperty<int> HP => hp;
+
+    private readonly ReactiveProperty<int> maxHP = new ReactiveProperty<int>(100);
+    public IReadOnlyReactiveProperty<int> MaxHP => maxHP;
+
+    private readonly ReactiveProperty<float> _currentXp = new ReactiveProperty<float>(0);
+    public IReadOnlyReactiveProperty<float> CurrentXP => _currentXp;
+
+    private readonly ReactiveProperty<float> _maxXp = new ReactiveProperty<float>(1000);
+    public IReadOnlyReactiveProperty<float> MaxXP => _maxXp;
+
+    private readonly ReactiveProperty<int> _ashNum = new ReactiveProperty<int>(0);
+    public IReadOnlyReactiveProperty<int> ashNum => _ashNum;
     [NonSerialized] public int _ashAmount;
 
+    private CompositeDisposable _disposable = new CompositeDisposable();
     private GameState _state;
     private WeaponList _weaponList;
     [Inject] DiContainer container;
@@ -31,16 +39,6 @@ public class Player : MonoBehaviour
     {
         _state = state;
         _weaponList = list;
-    }
-
-    private void Start()
-    {
-        hpBar.maxValue = maxHP;
-        hpBar.value = HP;
-        hPText.text = HP.ToString();
-        currencyText.text = _ashAmount.ToString();
-        xpBar.maxValue = _maxXp;
-        xpBar.value = _currentXp;
     }
     private void Update()
     {
@@ -60,40 +58,30 @@ public class Player : MonoBehaviour
                 transform.Translate(moveDirection * speed * Time.deltaTime,Space.World);
             }
         }
-        if (HP <= 0)
+        if (hp.Value <= 0)
         {
-            HP = 0;
-            hpBar.value = HP;
-            hPText.text = HP.ToString();
+            hp.Value = 0;
             _state.state = GS.gameOver;
         }
     }
     public void TakeDamage(float amount)
     {
-        HP -= (int)amount;
-        hpBar.value = HP;
-        hPText.text = HP.ToString();
+        hp.Value -= (int)amount;
     }
     public void GainXP(float amount)
     {
-        _currentXp += amount;
-        xpBar.value = _currentXp;
-        if(_currentXp >= _maxXp)
+        _currentXp.Value += amount;
+        if(_currentXp.Value >= _maxXp.Value)
         {
             StartCoroutine( LevelUp());
-            _currentXp -= _maxXp;
-            xpBar.value = _currentXp;
-            _maxXp *= 1.5f;
-            xpBar.maxValue = _maxXp;
+            _currentXp.Value -= _maxXp.Value;
+            _maxXp.Value *= 1.5f;
         }
     }
     private IEnumerator LevelUp()
     {
-        maxHP += 25;
-        HP = HP + 50 > maxHP ? maxHP : HP + 50;
-        hpBar.maxValue += maxHP;
-        hpBar.value = HP;
-        hPText.text = HP.ToString();
+        maxHP.Value += 25;
+        hp.Value = hp.Value + 50 > maxHP.Value ? maxHP.Value : hp.Value + 50;
         var item = Instantiate(lvlUpAnim);
         item.transform.position = transform.position;
         item.transform.SetParent(transform);
@@ -105,8 +93,7 @@ public class Player : MonoBehaviour
     {
         if (state)
         {
-            _ashAmount += (int)(amount * _state.TakeCurrentScale);
-            currencyText.text = _ashAmount.ToString();
+            _ashNum.Value += (int)(amount * _state.TakeCurrentScale);
         }
     }
     public void SaveData()
@@ -127,9 +114,9 @@ public class Player : MonoBehaviour
         }
         else
             _state.SaveData.RightHand = null;
-        _state.SaveData.currMaxHP = new int[2] { HP,maxHP};
-        _state.SaveData.currMaxXP = new float[2] { _currentXp, _maxXp };
-        _state.SaveData.ashAmount = _ashAmount;
+        _state.SaveData.currMaxHP = new int[2] { hp.Value,maxHP.Value};
+        _state.SaveData.currMaxXP = new float[2] { _currentXp.Value, _maxXp.Value };
+        _state.SaveData.ashAmount = _ashNum.Value;
     }
     public void InitializeWeapon(WeaponData lefthand,WeaponData righthand)
     {
@@ -148,11 +135,11 @@ public class Player : MonoBehaviour
     }
     public void InitializePlayerData(int[] currMaxHP, float[] currMaxXP,int ashamount)
     {
-        HP = currMaxHP[0];
-        maxHP = currMaxHP[1];
-        _currentXp = currMaxXP[0];
-        _maxXp = currMaxXP[1];
-        _ashAmount = ashamount;
+        hp.Value = currMaxHP[0];
+        maxHP.Value = currMaxHP[1];
+        _currentXp.Value = currMaxXP[0];
+        _maxXp.Value = currMaxXP[1];
+        _ashNum.Value = ashamount;
     }
     public void InitializeChoozenWeapon(string[] weaponNames)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +16,11 @@ public class UI : MonoBehaviour
     [SerializeField] private Text roundText;
     [SerializeField] private ChooseWeaponPanel chooseWeaponPanel;
 
+    [SerializeField] private Slider hpBar;
+    [SerializeField] private Text hPText;
+    [SerializeField] private Slider xpBar;
+    [SerializeField] private Text currencyText;
+
     private string _roundTextFormat = "round: {0}";
     private bool _panelActivated;
     private bool _gameOverActivated;
@@ -24,14 +30,24 @@ public class UI : MonoBehaviour
     [Inject]
     private DiContainer _container;
 
+    private Player _player;
     private GameState _gameState;
     [Inject]
-    private void Construct(GameState gameState)
+    private void Construct(GameState gameState,Player player)
     {
         _gameState = gameState;
+        _player = player;
     }
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.5f);
+        _player.MaxHP.Subscribe(x => hpBar.maxValue = x).AddTo(this);
+        _player.HP.Subscribe(x => hpBar.value = x).AddTo(this);
+        _player.HP.Subscribe(x => hPText.text = x.ToString()).AddTo(this);
+        _player.MaxXP.Subscribe(x => xpBar.maxValue = x).AddTo(this);
+        _player.CurrentXP.Subscribe(x => xpBar.value = x).AddTo(this);
+        _player.ashNum.Subscribe(x => currencyText.text = x.ToString()).AddTo(this);
+
         _gameOverActivated = false;
         _panelActivated = false;
     }
