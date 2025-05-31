@@ -17,6 +17,8 @@ public class gameInstaller : MonoInstaller
     [SerializeField] private InfoPanel _infoPanel;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private EnemySpawnerController _enemySpawnerController;
+    [SerializeField] private AudioRecorder _audioRecorder;
+    [SerializeField] private SceneAudioController _audioController;
     public override void InstallBindings()
     {
         var rounds = JsonUtility.FromJson<RoundsData>(roundsJsonText.text);
@@ -42,5 +44,7 @@ public class gameInstaller : MonoInstaller
         Container.Bind<Player>().FromInstance(_player).AsSingle();
         Container.Bind<UI>().FromInstance(_uI).AsSingle();
         Container.Bind<EnemySpawnerController>().FromInstance(_enemySpawnerController).AsSingle();
+        Container.Bind<AudioRecorder>().FromInstance(_audioRecorder).AsSingle();
+        Container.Bind<SceneAudioController>().FromInstance(_audioController).AsSingle();
     }
 }

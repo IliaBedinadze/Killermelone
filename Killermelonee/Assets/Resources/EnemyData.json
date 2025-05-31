@@ -40,7 +40,7 @@
             "health": 600,
             "speed": 8,
             "contactDamage": 20,
-            "projectileDamage": 30,
+            "projectileDamage": 24,
             "XPGain": 3000,
             "shootRate": 2,
             "ashAmount": [ 100, 150 ],

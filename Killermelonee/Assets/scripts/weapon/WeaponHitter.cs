@@ -35,7 +35,7 @@ public class WeaponHitter : WeaponBase
         {
             _hasShooted = true;
             _audioSource.Play();
-            var go = factory.Create(weaponData.name,weaponData.pierceAmount,weaponData.TakeCurrentDamage, weaponData.TakeCurrentLifeTime, weaponData.TakeCurrentBulletSpeed);
+            var go = factory.Create(weaponData.name,weaponData.TakeCurrentPierceAmount,weaponData.TakeCurrentDamage, weaponData.TakeCurrentLifeTime, weaponData.TakeCurrentBulletSpeed);
             go.transform.position = ShootPoint.position;
         }
         if (_hasShooted && _gameState.state == GS.playing)

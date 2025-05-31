@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5713512, y: 1.5713512, z: 1.5713512}
+  m_LocalScale: {x: 1.9462756, y: 1.9462756, z: 1.9462756}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6299648465312298707}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1618158bccb44b84bb6289d8805f1494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 20
   lifeTime: 4
 --- !u!60 &9209416148841375060
 PolygonCollider2D:

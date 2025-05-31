@@ -18,12 +18,14 @@ public class PauseMenu : MonoBehaviour
     private SceneManagementSc _sceneManagement;
     private GameState _gameState;
     private UI _ui;
+    private SceneAudioController _audioController;
     [Inject]
-    private void Construct(GameState gameState,UI ui,SceneManagementSc CM)
+    private void Construct(GameState gameState,UI ui,SceneManagementSc CM,SceneAudioController audioController)
     {
         _gameState = gameState;
         _ui = ui;
         _sceneManagement = CM;
+        _audioController = audioController;
     }
     private void Start()
     {
@@ -33,6 +35,8 @@ public class PauseMenu : MonoBehaviour
     }
     private void ResumeGame()
     {
+        _audioController.QuietLouderSong(false);
+        _audioController.PlayClick();
         _gameState.state = _previousState;
         _ui.PanelActivatedState(false);
         Destroy(gameObject);
@@ -41,8 +45,10 @@ public class PauseMenu : MonoBehaviour
     {
         _previousState = gS;
     }
-    private void ToMainMenu()
+    private IEnumerator ToMainMenu()
     {
+        _audioController.PlayClick();
+        yield return new WaitForSeconds(0.3f);
         string json = JsonUtility.ToJson(_gameState.SaveData);
         File.WriteAllText(Application.persistentDataPath + "/save.json",json);
         _sceneManagement.SceneToLoad = "MainMenu";

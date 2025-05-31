@@ -33,7 +33,6 @@ public class EnemyHit : MonoBehaviour
         {
             collision.GetComponent<Player>().TakeDamage(_damage);
             _damageDone = true;
-            Debug.Log("damage done");
         }
     }
 }

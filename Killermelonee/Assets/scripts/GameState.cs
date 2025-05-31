@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Unity.Mathematics;
 using UnityEngine;
@@ -15,14 +16,18 @@ public class GameState : MonoBehaviour
     private Player _player;
     private SceneManagementSc _management;
     private EnemySpawnerController _enemySpawnerController;
+    private AudioRecorder _audioRecorder;
+    private SceneAudioController _audioController;
     [Inject]
-    public void Constructor(UI ui, RoundsData data,Player player,SceneManagementSc managemant,EnemySpawnerController controller)
+    public void Constructor(UI ui, RoundsData data,Player player,SceneManagementSc managemant,EnemySpawnerController controller,AudioRecorder audioRecorder,SceneAudioController audioController)
     {
         _ui = ui;
         _roundsData = data.roundData;
         _player = player;
         _management = managemant;
         _enemySpawnerController = controller;
+        _audioRecorder = audioRecorder;
+        _audioController = audioController;
     }
     public enum State
     {
@@ -32,6 +37,8 @@ public class GameState : MonoBehaviour
         gameOver
     }
     [NonSerialized]public State state;
+
+    [SerializeField] private AudioSource audioPlayer;
 
     [SerializeField] private Text timerText;
     private int _currentRound = 0;
@@ -81,6 +88,7 @@ public class GameState : MonoBehaviour
                 _roundUp = true;
                 state = State.roundOver;
                 _currentRound++;
+                _audioController.StartStopSong("replace",_audioRecorder.ClipForShop);
                 _ui.CreateShopPanel();
                 _enemySpawnerController.firstHoard = true;
             }
@@ -114,6 +122,7 @@ public class GameState : MonoBehaviour
         if (TakeCurrentRound == 10)
             _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
+        _audioController.StartStopSong("replace",_audioRecorder.ClipForRound);
     }
     private void CleanArena()
     {

@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.04, y: -146.28}
-  m_SizeDelta: {x: 406.8, y: 208.83}
+  m_AnchorMin: {x: 0.0708756, y: 0.03685185}
+  m_AnchorMax: {x: 0.9398709, y: 0.35714817}
+  m_AnchoredPosition: {x: -0.45999146, y: -0.45300293}
+  m_SizeDelta: {x: -2.1999998, y: 0.4850006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8595490496812950324
 CanvasRenderer:
@@ -116,6 +116,7 @@ RectTransform:
   - {fileID: 5924302447073598921}
   - {fileID: 4495562276834676802}
   - {fileID: 7031496109543540109}
+  - {fileID: 3865234346391891307}
   - {fileID: 6313310102318616255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,6 +181,7 @@ MonoBehaviour:
   damage: {fileID: 3381646931477947112}
   attackRate: {fileID: 4684812704380561365}
   description: {fileID: 6411261550188789311}
+  pierceAmount: {fileID: 2457131997462586645}
 --- !u!225 &-1696430828346091808
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -224,10 +226,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63, y: 180}
-  m_SizeDelta: {x: 247.11, y: 35.81}
+  m_AnchorMin: {x: 0.37037322, y: 0.7962963}
+  m_AnchorMax: {x: 0.89737326, y: 0.8647407}
+  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_SizeDelta: {x: -0.8899994, y: -1.1900024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2450225357590907220
 CanvasRenderer:
@@ -303,10 +305,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.53, y: 82.853}
-  m_SizeDelta: {x: 395.67, y: 72.095}
+  m_AnchorMin: {x: 0.0708756, y: 0.6184074}
+  m_AnchorMax: {x: 0.914378, y: 0.7535556}
+  m_AnchoredPosition: {x: -0.02999878, y: 1.5}
+  m_SizeDelta: {x: -1.3299866, y: -0.9049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1074704365013964128
 CanvasRenderer:
@@ -382,10 +384,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63, y: 229}
-  m_SizeDelta: {x: 247.11, y: 35.81}
+  m_AnchorMin: {x: 0.37037322, y: 0.887}
+  m_AnchorMax: {x: 0.89737326, y: 0.9591112}
+  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_SizeDelta: {x: -0.8899994, y: -3.1900024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6554492071284148236
 CanvasRenderer:
@@ -461,10 +463,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147.73, y: 192}
-  m_SizeDelta: {x: 107.26, y: 110.16}
+  m_AnchorMin: {x: 0.0708756, y: 0.7535556}
+  m_AnchorMax: {x: 0.30025363, y: 0.9591112}
+  m_AnchoredPosition: {x: 0.27001953, y: -0.5}
+  m_SizeDelta: {x: -0.73999786, y: -0.83999634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8537588638411484286
 CanvasRenderer:
@@ -536,10 +538,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2848723368352927402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.5312, y: 10.758}
-  m_SizeDelta: {x: 395.67, y: 72.1}
+  m_AnchorMin: {x: 0.0708756, y: 0.49085188}
+  m_AnchorMax: {x: 0.914378, y: 0.6184074}
+  m_AnchoredPosition: {x: -0.031204224, y: 0.40497208}
+  m_SizeDelta: {x: -1.3299866, y: 3.0999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7233944005819643794
 CanvasRenderer:
@@ -583,3 +585,82 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'atackrate :'
+--- !u!1 &8663684489960192073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3865234346391891307}
+  - component: {fileID: 1906657831851465989}
+  - component: {fileID: 2457131997462586645}
+  m_Layer: 5
+  m_Name: pierce
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3865234346391891307
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663684489960192073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2848723368352927402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.0708756, y: 0.35714817}
+  m_AnchorMax: {x: 0.914378, y: 0.49085188}
+  m_AnchoredPosition: {x: -0.031204224, y: 0}
+  m_SizeDelta: {x: -1.3299866, y: 0.099998474}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1906657831851465989
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663684489960192073}
+  m_CullTransparentMesh: 1
+--- !u!114 &2457131997462586645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663684489960192073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: db7512eaf7db32a45acb2de26f04620c, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'pierce:'

@@ -30,7 +30,7 @@ public class Currency : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
-                collision.GetComponent<Player>().AddRemoveCurency(true, CurrencyAmount);
+                collision.GetComponent<Player>().AddRemoveCurency(true,true, CurrencyAmount);
                 PlaySound();
                 Destroy(gameObject);
             }

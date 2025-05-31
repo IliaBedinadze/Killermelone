@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     private readonly ReactiveProperty<int> _ashNum = new ReactiveProperty<int>(0);
     public IReadOnlyReactiveProperty<int> ashNum => _ashNum;
-    [NonSerialized] public int _ashAmount;
+    //[NonSerialized] public int _ashAmount;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
     private GameState _state;
@@ -89,11 +89,19 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Destroy(item);
     }
-    public void AddRemoveCurency(bool state,int amount)
+    public void AddRemoveCurency(bool fromEnemy,bool state,int amount)
     {
         if (state)
         {
-            _ashNum.Value += (int)(amount * _state.TakeCurrentScale);
+            if(fromEnemy)
+                _ashNum.Value += (int)(amount * _state.TakeCurrentScale);
+            else
+                _ashNum.Value += (int)amount;
+
+        }
+        if (!state)
+        {
+            _ashNum.Value -= (int)amount;
         }
     }
     public void SaveData()

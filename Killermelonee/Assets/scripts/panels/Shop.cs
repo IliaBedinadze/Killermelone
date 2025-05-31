@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -34,11 +35,11 @@ public class Shop : MonoBehaviour
     private Player _player;
     private ExceptionPanel _exceptionPanel;
     private List<WeaponData> _weaponList;
-
+    private SceneAudioController _sceneAudioController;
     [Inject]
     public DiContainer container;
     [Inject]
-    public void Constructor(GameState state, UI ui, Player player, ExceptionPanel exceptionPanel, RoundsData roundData, WeaponList weaponList)
+    public void Constructor(GameState state, UI ui, Player player, ExceptionPanel exceptionPanel, RoundsData roundData, WeaponList weaponList,SceneAudioController audioController)
     {
         _weaponList = weaponList.Weapons;
         _state = state;
@@ -46,6 +47,7 @@ public class Shop : MonoBehaviour
         _player = player;
         _exceptionPanel = exceptionPanel;
         _roundStats = roundData.roundData[_state.TakeCurrentRound - 1];
+        _sceneAudioController = audioController;
     }
     private void Start()
     {
@@ -54,7 +56,7 @@ public class Shop : MonoBehaviour
         sellButtonLeft.onClick.AddListener(delegate { Sell("left"); });
         sellButtonRight.onClick.AddListener(delegate { Sell("right"); });
         gameObject.transform.SetParent(_ui.gameObject.transform, false);
-        ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+        _player.ashNum.Subscribe(x => ashAmount.text = string.Format(_ashAmountFormat,x)).AddTo(this);
 
         Refresher(true);
 
@@ -63,6 +65,7 @@ public class Shop : MonoBehaviour
     }
     private void Ready()
     {
+        _sceneAudioController.PlayClick();
         _state.state = GS.playing;
         _state.NextRound(false);
         _state.SaveGame();
@@ -76,16 +79,16 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            if (_roundStats.refreshCost[_refresherCount] <= _player._ashAmount)
+            if (_roundStats.refreshCost[_refresherCount] <= _player.ashNum.Value)
             {
-                _player._ashAmount -= _roundStats.refreshCost[_refresherCount];
-                ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+                _player.AddRemoveCurency(false,false, _roundStats.refreshCost[_refresherCount]);
                 Destroy(_CurrentShop);
                 if (_refresherCount < 4)
                 {
                     _refresherCount++;
                 }
                 InitializeRefresher();
+                _sceneAudioController.PlayClick();
             }
         }
     }
@@ -105,13 +108,12 @@ public class Shop : MonoBehaviour
     }
     private void BuyWeapon(WeaponIcon weapon)
     {
-        if (weapon.weaponData.TakeCurrentPrice <= _player._ashAmount)
+        if (weapon.weaponData.TakeCurrentPrice <= _player.ashNum.Value)
         {
             if (_weaponLeft != null && WeaponAreSame(_weaponLeft.weaponData, weapon.weaponData))
             {
                 _weaponLeft.weaponData.currentLevel++;
-                _player._ashAmount -= weapon.weaponData.TakeCurrentPrice;
-                ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+                _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
                 handLeft.weaponData = _weaponLeft.weaponData;
                 handLeft.InitializeSellItem(true, null);
                 Destroy(weapon.gameObject);
@@ -119,8 +121,7 @@ public class Shop : MonoBehaviour
             else if (_weaponRight != null && WeaponAreSame(_weaponRight.weaponData, weapon.weaponData))
             {
                 _weaponRight.weaponData.currentLevel++;
-                _player._ashAmount -= weapon.weaponData.TakeCurrentPrice;
-                ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+                _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
                 handRight.weaponData = _weaponRight.weaponData;
                 handRight.InitializeSellItem(true, null);
                 Destroy(weapon.gameObject);
@@ -133,8 +134,7 @@ public class Shop : MonoBehaviour
                 item.GetComponent<WeaponBase>().weaponData = JsonUtility.FromJson<WeaponData>(json);
                 item.transform.SetParent(_player.leftHand, false);
                 InitializePlayerWeapon(true, "left");
-                _player._ashAmount -= weapon.weaponData.TakeCurrentPrice;
-                ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+                _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
                 Destroy(weapon.gameObject);
             }
             else if (_weaponRight == null)
@@ -145,21 +145,20 @@ public class Shop : MonoBehaviour
                 item.GetComponent<WeaponBase>().weaponData = JsonUtility.FromJson<WeaponData>(json);
                 item.transform.SetParent(_player.rightHand, false);
                 InitializePlayerWeapon(true, "right");
-                _player._ashAmount -= weapon.weaponData.TakeCurrentPrice;
-                ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+                _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
                 Destroy(weapon.gameObject);
             }
             else
             {
-                var panel = Instantiate(_exceptionPanel);
-                panel.SetMassage("you have both hand full!");
+                var panel = container.InstantiatePrefab(_exceptionPanel.gameObject);
+                panel.GetComponent<ExceptionPanel>().SetMassage("you have both hand full!");
                 panel.transform.SetParent(_ui.transform, false);
             }
         }
         else
         {
-            var panel = Instantiate(_exceptionPanel);
-            panel.SetMassage("not enought ash!");
+            var panel = container.InstantiatePrefab(_exceptionPanel.gameObject);
+            panel.GetComponent<ExceptionPanel>().SetMassage("not enought ash!");
             panel.transform.SetParent(_ui.transform, false);
         }
     }
@@ -167,19 +166,19 @@ public class Shop : MonoBehaviour
     {
         if (hand == "right" && _weaponRight != null)
         {
-            _player._ashAmount += _weaponRight.weaponData.TakeCurrentPrice / 2;
-            ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+            _player.AddRemoveCurency(false,true, _weaponRight.weaponData.TakeCurrentPrice / 2);
             Destroy(_weaponRight.gameObject);
             _weaponRight = null;
             handRight.InitializeSellItem(false, empty);
+            _sceneAudioController.PlayClick();
         }
         else if (hand == "left" && _weaponLeft != null)
         {
-            _player._ashAmount += _weaponLeft.weaponData.TakeCurrentPrice / 2;
-            ashAmount.text = string.Format(_ashAmountFormat, _player._ashAmount);
+            _player.AddRemoveCurency(false,true, _weaponLeft.weaponData.TakeCurrentPrice / 2);
             Destroy(_weaponLeft.gameObject);
             _weaponLeft = null;
             handLeft.InitializeSellItem(false, empty);
+            _sceneAudioController.PlayClick();
         }
     }
     private void InitializePlayerWeapon(bool state, string hand)

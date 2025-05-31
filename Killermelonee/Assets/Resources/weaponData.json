@@ -11,8 +11,8 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "just a standart pistol.",
-            "price": [ 35, 80, 140, 250, 360 ],
-            "pierceAmount":  1
+            "price": [ 25, 80, 140, 250, 360 ],
+            "pierceAmount": [ 1, 1, 1, 2, 2 ]
         },
         {
             "name": "ak-47",
@@ -26,7 +26,7 @@
             "maxLevel": 5,
             "description": "apple kalashnikow invited a perfect weapon, after many years still effective agains zombies!",
             "price": [ 35, 80, 140, 250, 360 ],
-            "pierceAmount": 1
+            "pierceAmount": [ 1, 1, 1, 1, 1]
         },
         {
             "name": "awp",
@@ -38,9 +38,9 @@
             "prefPath": "weaponPref/awp",
             "currentLevel": 0,
             "maxLevel": 5,
-            "description": "long range,fast and strong. but have long reload, if you are a sniper and do not miss,it yours.",
+            "description": "long range,fast and strong. but have slow reload, if you are a sniper and do not miss,it yours.",
             "price": [ 50, 110, 180, 260, 390 ],
-            "pierceAmount": 2
+            "pierceAmount": [ 2, 2, 2, 2, 3 ]
         },
         {
             "name": "miniGun",
@@ -54,7 +54,7 @@
             "maxLevel": 5,
             "description": "a rain of bullets, small but bullets!",
             "price": [ 35, 80, 140, 250, 360 ],
-            "pierceAmount": 1
+            "pierceAmount": [ 1, 1, 1, 1, 1 ]
         },
         {
             "name": "revolver",
@@ -66,9 +66,9 @@
             "prefPath": "weaponPref/revolver",
             "currentLevel": 0,
             "maxLevel": 5,
-            "description": "if zombies had a honor, i called them on duel, like in west.",
+            "description": "If zombies had honor, I would challenge them to a duel like in the Wild West.",
             "price": [ 35, 80, 140, 250, 360 ],
-            "pierceAmount": 1
+            "pierceAmount": [ 1, 1, 2, 2, 2 ]
         },
         {
             "name": "plasmaGun",
@@ -82,7 +82,7 @@
             "maxLevel": 5,
             "description": "before civilization fall, we were able to fly in space and ...",
             "price": [ 100, 180, 240, 380, 550 ],
-            "pierceAmount": 6
+            "pierceAmount": [ 6, 7, 8, 9, 10 ]
         },
         {
             "name": "laserPistol",
@@ -96,7 +96,7 @@
             "maxLevel": 5,
             "description": "standart weapon for space soldiers.",
             "price": [ 65, 120, 180, 280, 400 ],
-            "pierceAmount": -5
+            "pierceAmount": [ -5, -5, -5, -5, -5 ]
         },
         {
             "name": "smasher",
@@ -110,8 +110,7 @@
             "maxLevel": 5,
             "description": "how can baloon fists be so painful?",
             "price": [ 70, 140, 220, 300, 500 ],
-            "pierceAmount": -5
+            "pierceAmount": [ -5, -5, -5 , -5, -5 ]
         }
-
     ]
 }

@@ -17,7 +17,6 @@ public class VampireLord : EnemyBase
     private float _time = 0;
     private bool _attackDelay = true;
 
-    private bool _vanish = false;
     private Collider2D[] _colliders;
 
     [SerializeField] private Transform[] TeleportPoints;

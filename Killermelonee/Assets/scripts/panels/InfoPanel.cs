@@ -11,12 +11,14 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private Text damage;
     [SerializeField] private Text attackRate;
     [SerializeField] private Text description;
+    [SerializeField] private Text pierceAmount;
 
     private ShowInfoPanel _showInfoPanel;
     private bool delay = false;
 
     private string _damageStringFormat = "damage:{0} {1}";
     private string _attackRateStringFormat = "attackrate:{0} {1}";
+    private string _pierceAmountStringFormat = "pierce:{0} {1}";
     public void SetData(WeaponData data)
     {
         image.sprite = Resources.Load<Sprite>(data.spritePath);
@@ -27,11 +29,20 @@ public class InfoPanel : MonoBehaviour
         {
             damage.text = string.Format(_damageStringFormat, data.TakeCurrentDamage, "=> " + data.TakeNextDamage);
             attackRate.text = string.Format(_attackRateStringFormat, data.TakeCurrentAR, "=> " + data.TakeNextAR); 
+            if(data.TakeCurrentPierceAmount == -5)
+                pierceAmount.text = string.Format(_pierceAmountStringFormat,"eternal", ""); 
+            else
+                pierceAmount.text = string.Format(_pierceAmountStringFormat, data.TakeCurrentPierceAmount, "=> " + data.TakeNextPierceAmount); 
+
         }
         else
         {
             damage.text = string.Format(_damageStringFormat, data.TakeCurrentDamage, "(max)");
             attackRate.text = string.Format(_attackRateStringFormat, data.TakeCurrentAR, "(max)");
+            if (data.TakeCurrentPierceAmount == -5)
+                pierceAmount.text = string.Format(_pierceAmountStringFormat, "eternal", "");
+            else
+                pierceAmount.text = string.Format(_pierceAmountStringFormat, data.TakeCurrentPierceAmount, "(max)");
         }
     }
 

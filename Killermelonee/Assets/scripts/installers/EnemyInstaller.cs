@@ -19,6 +19,7 @@ public class EnemyInstaller : MonoInstaller
         public GameObject EnemyBullet;
     }
     [SerializeField] private EnemyBullets[] _enemyBullets;
+    [SerializeField] private GameObject enemy;
     public override void InstallBindings()
     {
         var enemyList = JsonUtility.FromJson<EnemyList>(enemyJsonFile.text);
@@ -28,7 +29,6 @@ public class EnemyInstaller : MonoInstaller
         Container.BindFactory<string,string,EnemyBase, EnemyFactory>().
             FromMethod((container, enemyName, enemyType) =>
             {
-                GameObject enemy = new GameObject();
                 if(enemyType == "ordinary")
                     enemy = container.InstantiatePrefab(Resources.Load<GameObject>(enemyList.enemies.Find(x => x.name == enemyName).prefPath));
                 else if(enemyType =="Boss")

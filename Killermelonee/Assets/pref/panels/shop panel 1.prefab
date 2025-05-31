@@ -1334,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: weaponicon (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3486820024515887813, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7523796050968442971, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: m_SizeDelta.y
       value: 47.9336
@@ -1353,6 +1357,10 @@ PrefabInstance:
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: iconType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: playAudio
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1483,6 +1491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: weaponicon
       objectReference: {fileID: 0}
+    - target: {fileID: 3486820024515887813, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7523796050968442971, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: m_SizeDelta.y
       value: 47.9336
@@ -1502,6 +1514,10 @@ PrefabInstance:
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: iconType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: playAudio
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,7 +16,7 @@ public class WeaponData
     public int maxLevel;
     public string description;
     public int[] price;
-    public int pierceAmount;
+    public int[] pierceAmount;
     public int TakeCurrentPrice => price[currentLevel];
     public float TakeCurrentDamage => damage[currentLevel];
     public float TakeNextDamage => damage[currentLevel + 1];
@@ -24,6 +24,8 @@ public class WeaponData
     public float TakeNextAR => attackRate[currentLevel + 1];
     public float TakeCurrentLifeTime => lifeTime[currentLevel];
     public float TakeCurrentBulletSpeed => bulletSpeed[currentLevel];
+    public int TakeCurrentPierceAmount => pierceAmount[currentLevel];
+    public int TakeNextPierceAmount => pierceAmount[currentLevel + 1];
 }
 [System.Serializable]
 public class WeaponList

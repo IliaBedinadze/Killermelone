@@ -89,7 +89,6 @@ public class EnemyBase : MonoBehaviour
         {
             _player.GetComponent<Player>().TakeDamage(_enemyStats.contactDamage);
             TakeDamage(_enemyStats.contactDamage);
-            Debug.Log("teleport");
         }
     }
 }

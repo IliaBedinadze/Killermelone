@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
         var i = UnityEngine.Random.Range(0, _enemyToSpawn.Length);
         var go = _enemyFactory.Create(_enemyToSpawn[i],"ordinary");
         go.transform.position = GetRandomPosition();
-        _time = 0f;
+
         gameObject.SetActive(false);
     }
     private IEnumerator SpawnHoardWave()
@@ -81,19 +81,21 @@ public class EnemySpawner : MonoBehaviour
             j++;
             var go = _enemyFactory.Create(_enemyToSpawn[i],"ordinary");
             go.transform.position = GetRandomPosition();
-            Debug.Log("here");
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             if (j >= 5) break;
         }
+        Debug.Log("here");
         gameObject.SetActive(false);
     }
     private void OnEnable()
     {
         _alreadySpawn = false;
+        _time = 0f;
     }
     private void OnDisable()
     {
-        if(GetComponentInParent<EnemySpawnerController>() != null)
+        _time = 0f;
+        if (GetComponentInParent<EnemySpawnerController>() != null)
             GetComponentInParent<EnemySpawnerController>().SpawnerDisabled();
     }
 }

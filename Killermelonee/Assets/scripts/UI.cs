@@ -14,7 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameOver gameOverPanel;
     [SerializeField] private Shop shopPanel;
     [SerializeField] private Text roundText;
-    [SerializeField] private ChooseWeaponPanel chooseWeaponPanel;
+    [SerializeField] private GameObject chooseWeaponPanel;
 
     [SerializeField] private Slider hpBar;
     [SerializeField] private Text hPText;
@@ -32,11 +32,13 @@ public class UI : MonoBehaviour
 
     private Player _player;
     private GameState _gameState;
+    private SceneAudioController _sceneAudioController;
     [Inject]
-    private void Construct(GameState gameState,Player player)
+    private void Construct(GameState gameState,Player player,SceneAudioController audioController)
     {
         _gameState = gameState;
         _player = player;
+        _sceneAudioController = audioController;
     }
     private IEnumerator Start()
     {
@@ -57,12 +59,14 @@ public class UI : MonoBehaviour
         {
             if (_panelActivated)
             {
+                _sceneAudioController.QuietLouderSong(false);
                 Destroy(_CurrentPanel);
                 _panelActivated = false;
                 _gameState.state = _previousState;
             }
             else if (!_panelActivated)
             {
+                _sceneAudioController.QuietLouderSong(true);
                 _CurrentPanel = _container.InstantiatePrefab(pauseMenu.gameObject);
                 _previousState = _gameState.state;
                 _CurrentPanel.GetComponent<PauseMenu>().SetPreviousState(_previousState);

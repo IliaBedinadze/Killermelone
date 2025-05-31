@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +26,13 @@ public class WeaponIcon : MonoBehaviour
     private bool _isEmpty;
     [SerializeField] private bool forSell;
     public bool IsEmptyStatement => _isEmpty == true;
+    private AudioSource _audioSource;
+    [SerializeField] private bool playAudio;
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        if(playAudio) 
+            GetComponent<Button>().onClick.AddListener(_audioSource.Play);
         if(iconType == IconType.other)
         {
             Destroy(Price.gameObject);
