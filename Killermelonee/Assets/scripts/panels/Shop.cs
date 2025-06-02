@@ -68,7 +68,6 @@ public class Shop : MonoBehaviour
         _sceneAudioController.PlayClick();
         _state.state = GS.playing;
         _state.NextRound(false);
-        _state.SaveGame();
         Destroy(gameObject);
     }
     private void Refresher(bool start)
@@ -102,7 +101,7 @@ public class Shop : MonoBehaviour
         foreach (Button button in _shopItems)
         {
             string json = JsonUtility.ToJson(RandomWeapon());
-            button.GetComponent<WeaponIcon>().weaponData = JsonUtility.FromJson<WeaponData>(json);
+            button.GetComponent<WeaponIcon>().SetStats(JsonUtility.FromJson<WeaponData>(json));
             button.onClick.AddListener(delegate { BuyWeapon(button.GetComponent<WeaponIcon>()); });
         }
     }
@@ -114,7 +113,7 @@ public class Shop : MonoBehaviour
             {
                 _weaponLeft.weaponData.currentLevel++;
                 _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
-                handLeft.weaponData = _weaponLeft.weaponData;
+                handLeft.SetStats(_weaponLeft.weaponData);
                 handLeft.InitializeSellItem(true, null);
                 Destroy(weapon.gameObject);
             }
@@ -122,7 +121,7 @@ public class Shop : MonoBehaviour
             {
                 _weaponRight.weaponData.currentLevel++;
                 _player.AddRemoveCurency(false,false, weapon.weaponData.TakeCurrentPrice);
-                handRight.weaponData = _weaponRight.weaponData;
+                handRight.SetStats(_weaponRight.weaponData);
                 handRight.InitializeSellItem(true, null);
                 Destroy(weapon.gameObject);
             }
@@ -188,7 +187,7 @@ public class Shop : MonoBehaviour
             if (_player.leftHand.childCount != 0 && state)
             {
                 _weaponLeft = _player.leftHand.GetComponentInChildren<WeaponHitter>();
-                handLeft.weaponData = _weaponLeft.weaponData;
+                handLeft.SetStats(_weaponLeft.weaponData);
                 handLeft.InitializeSellItem(true, null);
             }
             else
@@ -199,7 +198,7 @@ public class Shop : MonoBehaviour
             if (_player.rightHand.childCount != 0 && state)
             {
                 _weaponRight = _player.rightHand.GetComponentInChildren<WeaponHitter>();
-                handRight.weaponData = _weaponRight.weaponData;
+                handRight.SetStats(_weaponRight.weaponData);
                 handRight.InitializeSellItem(true, null);
             }
             else

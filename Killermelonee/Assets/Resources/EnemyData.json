@@ -8,29 +8,29 @@
             "projectileDamage": 10,
             "XPGain": 50,
             "shootRate": 1.2,
-            "ashAmount": [ 4, 6 ],
+            "ashAmount": [ 5, 7 ],
             "prefPath": "Enemy/SkeletonArcher"
         },
         {
             "name": "Zombie",
-            "health": 14,
+            "health": 9,
             "speed": 4,
             "contactDamage": 10,
             "projectileDamage": 0,
             "XPGain": 100,
             "shootRate": 0,
-            "ashAmount": [ 3, 5 ],
+            "ashAmount": [ 3, 6 ],
             "prefPath": "Enemy/Zombie"
         },
         {
             "name": "SkeletonWarrior",
-            "health": 9,
+            "health": 8,
             "speed": 3,
             "contactDamage": 10,
             "projectileDamage": 12,
             "XPGain": 70,
             "shootRate": 2.2,
-            "ashAmount": [ 4, 7 ],
+            "ashAmount": [ 4, 8 ],
             "prefPath": "Enemy/SkeletonWarrior"
         }
     ],

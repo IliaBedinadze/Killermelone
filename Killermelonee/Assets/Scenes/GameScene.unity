@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: -3268338681490934274, guid: 48e577673ff92d944b3d87987d65ee84, type: 3}
-  gameOverPanel: {fileID: 2563208449919321603, guid: 8eb6cc6ea2f1bc64bb0a016e213f2713, type: 3}
+  gameOverPanel: {fileID: -7003672377698329432, guid: a49d1d6d6dd780c4ea1b087b2a703346, type: 3}
   shopPanel: {fileID: 878141715408429780, guid: 60f620c6656b8c44392d87bf4217d372, type: 3}
   roundText: {fileID: 1303377820}
   chooseWeaponPanel: {fileID: 3165301224869722203, guid: f8bac22c8ff672847aa8b830386a9a8b, type: 3}

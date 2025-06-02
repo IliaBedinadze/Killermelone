@@ -11,4 +11,5 @@ public class Save
     public int ashAmount = 0;
     public int[] currMaxHP = new int[2];
     public float[] currMaxXP = new float[2];
+    public VictoryStats VictoryStats;
 }

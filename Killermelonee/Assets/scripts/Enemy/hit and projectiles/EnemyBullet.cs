@@ -8,16 +8,15 @@ using GS = GameState.State;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private Transform _player;
     private GameState _gameState;
+
     [NonSerialized] public Vector2 direction;
-    [NonSerialized]public float damage;
+    [NonSerialized] public float damage;
     [SerializeField] private float lifeTime;
     private float _time;
     [Inject]
-    private void Construct(Transform player,GameState gamestate)
+    private void Construct(GameState gamestate)
     {
-        _player = player;
         _gameState = gamestate;
     }
     private void Start()

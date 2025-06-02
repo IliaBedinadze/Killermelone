@@ -5,22 +5,26 @@ using Zenject;
 using Zenject.Asteroids;
 using Zenject.SpaceFighter;
 
+// every enemy base stats and methods
 public class EnemyBase : MonoBehaviour
 {
-    [Inject]
-    protected CurrencyFactory _currencyFactory;
-    public string ID;
-
-    protected bool _underLaser;
+    //under effect of laser type weapon,damage and delay state
+    protected bool _underLaser;         
     protected float _laserDamage;
     protected bool laserDelay = false;
-    protected float _attackDelayTimer;
 
-    protected AudioSource _audioSource;
+    //protected float _attackDelayTimer;
+
+    [SerializeField] protected AudioClip deathClip;
     protected bool _alive;
-    protected Animator animator;
-    protected GameState _gamestate;
     protected Enemy _enemyStats;
+    protected Animator animator;
+    protected AudioSource _audioSource;
+
+    //dependencies
+    [Inject]
+    protected CurrencyFactory _currencyFactory; 
+    protected GameState _gamestate;
     protected Transform _player;
     [Inject]
     private void Construct(Transform player, GameState gamestate)
@@ -30,9 +34,9 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         _alive = true;
-        _attackDelayTimer = _enemyStats.shootRate;
         _enemyStats.ScaleEnemy(_gamestate.TakeCurrentScale);
     }
     protected virtual void Update()
@@ -46,7 +50,8 @@ public class EnemyBase : MonoBehaviour
     }
     protected IEnumerator Death()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _gamestate.VictoryStats.EnemyKilled++;
+        _audioSource.clip = deathClip;
         _audioSource.Play();
         var colliders = GetComponents<Collider2D>();
         foreach (var item in colliders)
@@ -67,6 +72,7 @@ public class EnemyBase : MonoBehaviour
     public void TakeDamage(float amount)
     {
         _enemyStats.health -= amount;
+        _gamestate.VictoryStats.DamageDone += (int)amount;
         if (_enemyStats.health <= 0)
         {
             _alive = false;
@@ -75,7 +81,7 @@ public class EnemyBase : MonoBehaviour
     }
     private IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         laserDelay = false;
     }
     public void HittenByLaser(bool statement,float damageAmount)
@@ -88,12 +94,8 @@ public class EnemyBase : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _player.GetComponent<Player>().TakeDamage(_enemyStats.contactDamage);
+            _gamestate.VictoryStats.DamageRecieve += (int)_enemyStats.contactDamage;
             TakeDamage(_enemyStats.contactDamage);
         }
     }
-}
-
-public interface ICollisionHandler
-{
-    public void SentCollisionInfo(bool collided);
 }

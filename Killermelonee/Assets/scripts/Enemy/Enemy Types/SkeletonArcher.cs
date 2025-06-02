@@ -61,7 +61,7 @@ public class SkeletonArcher : EnemyBase
         while(true)
         {
             _time += Time.deltaTime;
-            if (_time >= _attackDelayTimer)
+            if (_time >= _enemyStats.shootRate)
             {
                 _hasShooten = false;
                 _time = 0;

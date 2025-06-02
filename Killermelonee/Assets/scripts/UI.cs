@@ -11,7 +11,7 @@ using GS = GameState.State;
 public class UI : MonoBehaviour
 {
     [SerializeField] private PauseMenu pauseMenu;
-    [SerializeField] private GameOver gameOverPanel;
+    [SerializeField] private VictoryPanel gameOverPanel;
     [SerializeField] private Shop shopPanel;
     [SerializeField] private Text roundText;
     [SerializeField] private GameObject chooseWeaponPanel;
@@ -77,7 +77,9 @@ public class UI : MonoBehaviour
         if(_gameState.state == GS.gameOver && !_gameOverActivated)
         {
             _gameOverActivated = true;
+            _sceneAudioController.QuietLouderSong(true);
             _CurrentPanel = _container.InstantiatePrefab(gameOverPanel.gameObject);
+            _CurrentPanel.transform.SetParent(transform, false);
             string path = Application.persistentDataPath + "/save.json";
             if (File.Exists(path))
             {

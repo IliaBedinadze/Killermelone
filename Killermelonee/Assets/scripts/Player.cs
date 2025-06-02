@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     private readonly ReactiveProperty<int> _ashNum = new ReactiveProperty<int>(0);
     public IReadOnlyReactiveProperty<int> ashNum => _ashNum;
-    //[NonSerialized] public int _ashAmount;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
     private GameState _state;
@@ -67,6 +66,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         hp.Value -= (int)amount;
+        _state.VictoryStats.DamageRecieve += (int)amount;
     }
     public void GainXP(float amount)
     {
@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator LevelUp()
     {
+        _state.VictoryStats.LevelClaimed++;
         maxHP.Value += 25;
         hp.Value = hp.Value + 50 > maxHP.Value ? maxHP.Value : hp.Value + 50;
         var item = Instantiate(lvlUpAnim);
@@ -93,8 +94,11 @@ public class Player : MonoBehaviour
     {
         if (state)
         {
-            if(fromEnemy)
+            if (fromEnemy)
+            {
                 _ashNum.Value += (int)(amount * _state.TakeCurrentScale);
+                _state.VictoryStats.AshCollected += (int)(amount * _state.TakeCurrentScale);
+            }
             else
                 _ashNum.Value += (int)amount;
 

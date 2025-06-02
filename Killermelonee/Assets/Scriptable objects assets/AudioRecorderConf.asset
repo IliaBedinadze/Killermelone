@@ -15,3 +15,5 @@ MonoBehaviour:
   ClipForRound: {fileID: 8300000, guid: e213c6a0145044a29b316c6b4b176ae1, type: 3}
   ClipForMenu: {fileID: 8300000, guid: 7e153eca4527a4cc79fd21674c9d66d5, type: 3}
   ClipForShop: {fileID: 8300000, guid: faf8667ee5490deba86a2f81acaa927d, type: 3}
+  ClipForButtonClick: {fileID: 8300000, guid: 5e8772115e5baa0428cbb4b8c985f28f, type: 3}
+  ClipForWeapoIconClick: {fileID: 8300000, guid: c54d74e69eefc28499dbff9baa8673fe, type: 3}

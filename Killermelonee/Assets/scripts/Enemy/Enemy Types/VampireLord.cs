@@ -19,6 +19,8 @@ public class VampireLord : EnemyBase
 
     private Collider2D[] _colliders;
 
+    [SerializeField] private AudioClip[] vampireLaugh;
+
     [SerializeField] private Transform[] TeleportPoints;
     [Inject]
     public void Constructor(EnemyList list)
@@ -69,6 +71,9 @@ public class VampireLord : EnemyBase
     }
     private IEnumerator Vanish()
     {
+        int j = Random.Range(0,vampireLaugh.Length);
+        _audioSource.clip = vampireLaugh[j];
+        _audioSource.Play();
         _hasShooten = true;
         _attackDelay = false;
         foreach (var item in _colliders)
@@ -116,7 +121,7 @@ public class VampireLord : EnemyBase
         while (true)
         {
             _time += Time.deltaTime;
-            if (_time >= _attackDelayTimer)
+            if (_time >= _enemyStats.shootRate)
             {
                 _hasShooten = false;
                 _time = 0;

@@ -11,6 +11,7 @@ using Zenject;
 public class GameState : MonoBehaviour
 {
     [NonSerialized] public Save SaveData = new Save();
+    [NonSerialized] public VictoryStats VictoryStats = new VictoryStats(0,0,0,0,0);
     private UI _ui;
     private RoundStats[] _roundsData;
     private Player _player;
@@ -84,13 +85,21 @@ public class GameState : MonoBehaviour
             _time += Time.deltaTime;
             if (_roundsData[_currentRound].roundTimer == 0)
             {
-                CleanArena();
-                _roundUp = true;
-                state = State.roundOver;
-                _currentRound++;
-                _audioController.StartStopSong("replace",_audioRecorder.ClipForShop);
-                _ui.CreateShopPanel();
-                _enemySpawnerController.firstHoard = true;
+                if(_currentRound != 9)
+                {
+                    CleanArena();
+                    _roundUp = true;
+                    state = State.roundOver;
+                    _currentRound++;
+                    _audioController.StartStopSong("replace",_audioRecorder.ClipForShop);
+                    _ui.CreateShopPanel();
+                    _enemySpawnerController.firstHoard = true;
+                }
+                else
+                {
+                    VictoryStats.VictoryState = true;
+                    state = State.gameOver;
+                }
             }
             if (_time > _currentTime)
             {
@@ -103,6 +112,7 @@ public class GameState : MonoBehaviour
     {
         _player.SaveData();
         SaveData.currentRound = _currentRound;
+        SaveData.VictoryStats = VictoryStats;
     }
     private void Timer(int amount)
     {
@@ -118,8 +128,9 @@ public class GameState : MonoBehaviour
 
     public void NextRound(bool done)
     {
+        SaveGame();
         _roundUp = done;
-        if (TakeCurrentRound == 10)
+        if (TakeCurrentRound == 9)
             _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
         _audioController.StartStopSong("replace",_audioRecorder.ClipForRound);

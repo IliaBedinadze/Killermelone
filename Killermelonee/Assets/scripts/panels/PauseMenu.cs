@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         resumeButton.onClick.AddListener(delegate { ResumeGame(); });
-        menuButton.onClick.AddListener(delegate { ToMainMenu(); });
+        menuButton.onClick.AddListener(delegate { StartCoroutine( ToMainMenu()); });
         gameObject.transform.SetParent(_ui.gameObject.transform,false);
     }
     private void ResumeGame()
@@ -49,8 +49,6 @@ public class PauseMenu : MonoBehaviour
     {
         _audioController.PlayClick();
         yield return new WaitForSeconds(0.3f);
-        string json = JsonUtility.ToJson(_gameState.SaveData);
-        File.WriteAllText(Application.persistentDataPath + "/save.json",json);
         _sceneManagement.SceneToLoad = "MainMenu";
         SceneManager.LoadScene("LoadingScreen");
     }

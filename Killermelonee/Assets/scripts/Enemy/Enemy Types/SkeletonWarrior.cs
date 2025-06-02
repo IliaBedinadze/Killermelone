@@ -57,7 +57,7 @@ public class SkeletonWarrior : EnemyBase,ICollisionHandler
         while (true)
         {
             _time += Time.deltaTime;
-            if (_time >= _attackDelayTimer)
+            if (_time >= _enemyStats.shootRate)
             {
                 _hasHitten = false;
                 _time = 0;

@@ -8,14 +8,16 @@ using GS = GameState.State;
 
 public class ChooseWeaponPanel : MonoBehaviour
 {
-    [SerializeField] private Button[] icons;
-    private string[] ChoosenWeapons = new string[2];
-    [SerializeField] private Button leftHand;
-    [SerializeField] private Button rightHand;
-    [SerializeField] private Sprite empty;
     [SerializeField] private Button submitButton;
-    [SerializeField] private GameObject panel;
+    [SerializeField] private Button[] icons; // all selectable weapon buttons
+    [SerializeField] private Button leftHand; // left hand weapon icon slot
+    [SerializeField] private Button rightHand; // right hand weapon icon slot
+    [SerializeField] private Sprite empty; // default sprite for empty
+    [SerializeField] private GameObject panel; // panel to destroy on submit
 
+    private string[] ChoosenWeapons = new string[2]; // selected weapon names
+
+    // dependencies
     [Inject]private DiContainer _container;
     private ExceptionPanel _exceptionPanel;
     private List<WeaponData> weapons;
@@ -37,22 +39,26 @@ public class ChooseWeaponPanel : MonoBehaviour
     }
     private void Start()
     {
-        _sceneAudioController.StartStopSong("play", _audioRecorder.ClipForShop);
+        _sceneAudioController.StartStopSong("play", _audioRecorder.ClipForShop); // starting music
         submitButton.onClick.AddListener(delegate { SubmitButton(); });
         submitButton.enabled = false;
+
+        // initializing empty player hands, till they choose any
         leftHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(false, noImage: empty);
         rightHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(false, noImage: empty);
-        icons = GetComponentsInChildren<Button>();
+
+        // initializing weapons for choose
         int i = 0;
         foreach (Button button in icons)
         {
             var weapon = button.GetComponent<WeaponIcon>();
-            weapon.ChoosenItemInitialization(true,weapons[i]);
-            weapon.weaponData.currentLevel = 0;
+            weapon.ChoosenItemInitialization(true,weapons[i]); //initializing icon
+            weapon.weaponData.currentLevel = 0;  // set weapon level to 1
             button.onClick.AddListener(delegate { OnChoosenItemClick(weapon.weaponData,button); });
             i++;
         }
     }
+    // called when weapon is selected
     private void OnChoosenItemClick(WeaponData data,Button butt)
     {
         if (ChoosenWeapons[0] == null)
@@ -60,44 +66,44 @@ public class ChooseWeaponPanel : MonoBehaviour
             leftHand.onClick.RemoveAllListeners();
             ChoosenWeapons[0] = data.name;
             leftHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(true,Weapondata:data);
-            leftHand.onClick.AddListener(delegate { RemoveChoosenItem(butt,0); });
-            butt.enabled = false;
+            leftHand.onClick.AddListener(delegate { RemoveChoosenItem(0); }); 
         }
         else if (ChoosenWeapons[1] == null)
         {
             rightHand.onClick.RemoveAllListeners();
-            ChoosenWeapons[1] = data.name;
+            ChoosenWeapons[1] = data.name; 
             rightHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(true,Weapondata:data);
-            rightHand.onClick.AddListener(delegate { RemoveChoosenItem(butt,1); });
-            butt.enabled = true;
+            rightHand.onClick.AddListener(delegate { RemoveChoosenItem(1); });
         }
-        else
-        {
-            var panel = _container.InstantiatePrefab(_exceptionPanel);
-            panel.GetComponent<ExceptionPanel>().SendMessage("you have both hand full!");
-            panel.transform.SetParent(_ui.transform, false);
-        }
-        if(ChoosenWeapons[0] != null && ChoosenWeapons[1] != null)
-        {
-            submitButton.enabled = true;
-        }
+        BothWeaponsChoosen();
     }
-    private void RemoveChoosenItem(Button butt,int index)
+    // removes a selected weapon
+    private void RemoveChoosenItem(int index)
     {
-        butt.enabled = true;
-        ChoosenWeapons[index] = null;
+        ChoosenWeapons[index] = null; 
         if (index == 0)
             leftHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(false,noImage:empty);
         else if (index == 1)
             rightHand.GetComponent<WeaponIcon>().ChoosenItemInitialization(false,noImage:empty);
-        submitButton.enabled = false;
+        BothWeaponsChoosen();
     }
+    // for submit button listener
     private void SubmitButton()
     {
-        _player.InitializeChoozenWeapon(ChoosenWeapons);
-        _gameState.state = GS.playing;
+        _player.InitializeChoozenWeapon(ChoosenWeapons);    // send chosen weapons to player
+        _gameState.state = GS.playing;         //change state from pause to play
         _sceneAudioController.PlayClick();
         _sceneAudioController.StartStopSong("replace", _audioRecorder.ClipForRound);
         Destroy(panel);
+    }
+    // enables/disables icons and submit button based on selection state
+    private void BothWeaponsChoosen()
+    {
+        bool bothSelected = ChoosenWeapons[0] != null && ChoosenWeapons[1] != null;
+
+        foreach(var butt in icons)
+            butt.enabled = !bothSelected;
+
+        submitButton.enabled = bothSelected;
     }
 }

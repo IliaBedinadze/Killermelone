@@ -270,10 +270,10 @@ RectTransform:
   - {fileID: 189412185472829773}
   m_Father: {fileID: 2714228409076268599}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 180.13965, y: -65.19272}
-  m_SizeDelta: {x: -543.6793, y: -296.2596}
+  m_AnchorMin: {x: 0.3471526, y: 0.102000006}
+  m_AnchorMax: {x: 0.9296137, y: 0.73700005}
+  m_AnchoredPosition: {x: 0.13964844, y: 0.3072815}
+  m_SizeDelta: {x: 0.3206787, y: 0.74038696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3641497748388769311
 CanvasRenderer:
@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72b00ae290965844b8a7669bfbeb283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  submitButton: {fileID: 3590881640664529037}
   icons:
   - {fileID: 6351192117776013669}
   - {fileID: 8995618247206461693}
@@ -304,8 +305,13 @@ MonoBehaviour:
   leftHand: {fileID: 7209006782041901687}
   rightHand: {fileID: 8766423419834686167}
   empty: {fileID: 21300000, guid: ba7cc9a5854327443a834f97db36b4a2, type: 3}
-  submitButton: {fileID: 3590881640664529037}
   panel: {fileID: 3165301224869722203}
+  weaponsForChoose:
+  - pistol
+  - minuGun
+  - ak-47
+  - revolver
+  - awp
 --- !u!1 &3165301224869722203
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2714228409076268599}
   - component: {fileID: 4804186516893625088}
+  - component: {fileID: 2926384104829539375}
   m_Layer: 5
   m_Name: choose weapon panel
   m_TagString: Untagged
@@ -356,6 +363,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3165301224869722203}
   m_CullTransparentMesh: 1
+--- !u!114 &2926384104829539375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165301224869722203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4503605430214249918
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,10 +502,10 @@ RectTransform:
   - {fileID: 5472268933239199228}
   m_Father: {fileID: 2714228409076268599}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -389.00012, y: -195.22214}
-  m_SizeDelta: {x: -1008.535, y: -540.6111}
+  m_AnchorMin: {x: 0.09, y: 0.09085712}
+  m_AnchorMax: {x: 0.31484085, y: 0.42945716}
+  m_AnchoredPosition: {x: -1.5001221, y: -0.22213745}
+  m_SizeDelta: {x: 0.46502686, y: -2.611084}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3313723455709898156
 CanvasRenderer:
@@ -511,10 +548,10 @@ RectTransform:
   - {fileID: 6220167384191518044}
   m_Father: {fileID: 2714228409076268599}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -389, y: 78.120605}
-  m_SizeDelta: {x: -1008.535, y: -540.6111}
+  m_AnchorMin: {x: 0.09, y: 0.42945716}
+  m_AnchorMax: {x: 0.31484085, y: 0.76262856}
+  m_AnchoredPosition: {x: -2.5, y: -0.37939453}
+  m_SizeDelta: {x: -1.5349731, y: 2.388916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1277957113324287038
 CanvasRenderer:
@@ -833,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6de761cec8f334e8550ff4c849c4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
 --- !u!1 &8521391282394984832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1251,10 @@ PrefabInstance:
     - target: {fileID: 7523796050968442971, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -1.7109375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8117322121253530012, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8414408035157837424, guid: aa1978f434cda254ab34d38b0666e688, type: 3}
       propertyPath: iconType

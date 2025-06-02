@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// all weapon base stats
 [System.Serializable]
 public class WeaponData
 {
@@ -17,6 +18,8 @@ public class WeaponData
     public string description;
     public int[] price;
     public int[] pierceAmount;
+
+    // take current or next level stats
     public int TakeCurrentPrice => price[currentLevel];
     public float TakeCurrentDamage => damage[currentLevel];
     public float TakeNextDamage => damage[currentLevel + 1];

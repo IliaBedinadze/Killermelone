@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: SkeletonArcher
+  deathClip: {fileID: 8300000, guid: 7082514b9d5f45e4287b79c2a9ef4513, type: 3}
 --- !u!50 &7186169871312040352
 Rigidbody2D:
   serializedVersion: 4

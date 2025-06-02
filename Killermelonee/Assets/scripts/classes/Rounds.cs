@@ -2,39 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// stats for every round,serealize by json
 [System.Serializable]
 public class RoundsData
 {
     public RoundStats[] roundData;
 }
+// stats for every round
 [System.Serializable]
 public class RoundStats
 {
-    // time amount for round complete
-    public int roundTimer;
-    // weapon rarity chance on shop
-    public int[] roundRarity;
-    // shop refresh goods cost
-    public int[] refreshCost;
-    // scale for enemy
-    public float enemyScale;
-    // which enemy can be spawn on current round
+    public int roundTimer;      // time amount for round complete
+    public int[] roundRarity;   // weapon rarity chance on shop
+    public int[] refreshCost;   // shop refresh goods cost
+    public float enemyScale;    // scale for enemy
     public EnemyByRound enemyByRound;
 }
+// enemy spawners info for rounds
 [System.Serializable]
 public class EnemyByRound
 {
-    //which enemy take part in current round
-    public string[] baseEnemy;
-    // to let know if boss should be swapned
-    public bool boss;
-    // boss to spawn
-    public string bossEnemy;
-    // what type is wave, hoard or ordinary
-    public string roundType;
-    // frequency of base enemy spawn
-    public float[] roundSpawnRate;
-    // how many spawners should work
-    public int spawnersAmount;
+    public string[] baseEnemy;    // which enemy take part in current round
+    public bool boss;             // boss round state
+    public string bossEnemy;      // boss to spawn
+    public string roundType;      // hoard or ordinary
+    public float[] roundSpawnRate;// enemy spawn frequency
+    public int spawnersAmount;    // spawners amount at same time
 }

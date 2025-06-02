@@ -15,12 +15,19 @@ public class SceneAudioController : MonoBehaviour
     [SerializeField] private AudioSource musicAudio;
     [SerializeField] private AudioSource musicAudio1;
 
-    // source for button clicks on UI, clip is always same
+    // source for button clicks on UI
     [SerializeField] private AudioSource clickAudio;
 
     // bool for right distribution of duties between music audio sources
     private bool _firstSontActive = false;
 
+    // dependencies
+    private AudioRecorder _audioRecorder; //scriptable with sounds
+    [Inject]
+    public void Constructor(AudioRecorder audioRecorder)
+    {
+        _audioRecorder = audioRecorder;
+    }
     // function for start or replace for songs
     // "play" move is only for first time, after only replace used cause music is always on
     public void StartStopSong(string move, AudioClip clip)
@@ -31,8 +38,7 @@ public class SceneAudioController : MonoBehaviour
             current.clip = clip;
             current.volume = 0f;
             current.Play();
-            StartCoroutine(FadeIn(current));
-            _firstSontActive = !_firstSontActive; //changing bool to oposite to make another audio source became current in next code
+            StartCoroutine(FadeIn(current,0,soundsMaxValue));
         }
         if(move == "replace")
         {
@@ -40,68 +46,57 @@ public class SceneAudioController : MonoBehaviour
             _firstSontActive = !_firstSontActive; //changing bool to oposite to make another audio source became current in next code
         }
     }
-    // coroutine => replace current song by other one slowly fade out one by another
+    // coroutine => replace current song by other 
     private IEnumerator ReplaceSong(AudioClip clip)
     {
         // initializing which source play(current) to change it by one that not(next)
         AudioSource current = _firstSontActive ? musicAudio : musicAudio1;
         AudioSource next = !_firstSontActive ? musicAudio : musicAudio1;
 
-        yield return StartCoroutine(FadeOut(current)); // slowly cut current song
+        yield return StartCoroutine(FadeOut(current,soundsMaxValue,0)); 
+        current.Stop();
         next.clip = clip;
         next.volume = 0f;
         next.Play();
-        yield return StartCoroutine(FadeIn(next)); //slowly let new one reveal
+        yield return StartCoroutine(FadeIn(next,0,soundsMaxValue)); 
     }
     // function to slowly quiet dawn song
-    private IEnumerator FadeOut(AudioSource source)
+    private IEnumerator FadeOut(AudioSource source,float soundMax,float soundMin)
     {
         for (float t = 0; t < 1.5f; t += Time.deltaTime)
         {
-            source.volume = Mathf.Lerp(soundsMaxValue, 0f, t / 1.5f);
+            source.volume = Mathf.Lerp(soundMax, soundMin, t / 1.5f);
             yield return null;
         }
-        source.Stop();
     }
     // function to slowly make louder song
-    private IEnumerator FadeIn(AudioSource source)
+    private IEnumerator FadeIn(AudioSource source,float soundMin,float soundMax)
     {
         for (float t = 0; t < 1.5f; t += Time.deltaTime)
         {
-            source.volume = Mathf.Lerp(0f, soundsMaxValue, t / 1.5f);
+            source.volume = Mathf.Lerp(soundMin, soundMax, t / 1.5f);
             yield return null;
         }
     }
-    // let any class(monobehaviour) to make click sound on time of need
+    //make click sound on time of need
     public void PlayClick()
     {
+        clickAudio.clip = _audioRecorder.ClipForButtonClick;
         clickAudio.Play();
     }
-    // function to quiet dawn or make song louder(back) for pause or any other moments
+    //make sound for click on weapon icon
+    public void PlayWeaponIconClick()
+    {
+        clickAudio.clip = _audioRecorder.ClipForWeapoIconClick;
+        clickAudio.Play();
+    }
+    // function to quiet dawn or make song louder(back)
     public void QuietLouderSong(bool quiet)
     {
         AudioSource current = _firstSontActive ? musicAudio : musicAudio1;
         if (quiet)
-            QuietDawn(current);
+            StartCoroutine( FadeOut(current,soundsMaxValue,soundsMinValue));
         else
-            LouderUp(current);
-    }
-    // makes song quiter
-    private IEnumerator QuietDawn(AudioSource source)
-    {
-        for (float t = 0; t < 1.5f; t += Time.deltaTime)
-        {
-            source.volume = Mathf.Lerp(soundsMaxValue, soundsMinValue, t / 1.5f);
-            yield return null;
-        }
-    }
-    // makes song louder
-    private IEnumerator LouderUp(AudioSource source)
-    {
-        for (float t = 0; t < 1.5f; t += Time.deltaTime)
-        {
-            source.volume = Mathf.Lerp(soundsMinValue, soundsMaxValue, t / 1.5f);
-            yield return null;
-        }
+            StartCoroutine( FadeIn(current,soundsMinValue,soundsMaxValue));
     }
 }
