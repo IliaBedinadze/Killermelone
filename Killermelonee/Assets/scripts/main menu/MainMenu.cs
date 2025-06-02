@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +27,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
         // play menu song on start
         _audioController.StartStopSong("play", _audioRecorder.ClipForMenu);
         // adding listeners for start and quit buttons

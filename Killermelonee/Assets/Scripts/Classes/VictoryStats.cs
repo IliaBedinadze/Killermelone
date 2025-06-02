@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // class for game over panel stats show
+[System.Serializable]
 public class VictoryStats 
 {
     public int EnemyKilled = 0;

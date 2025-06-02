@@ -53,7 +53,7 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "a rain of bullets, small but bullets!",
-            "price": [ 50, 120, 2400, 4300, 800 ],
+            "price": [ 50, 120, 240, 430, 800 ],
             "pierceAmount": [ 1, 1, 1, 1, 1 ]
         },
         {

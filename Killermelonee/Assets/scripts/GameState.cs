@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Unity.Mathematics;
 using UnityEngine;
@@ -54,7 +53,6 @@ public class GameState : MonoBehaviour
     private bool _roundUp = false;
     private void Start()
     {
-        SaveGame();
         if (ContinueState)
         {
             string path = Application.persistentDataPath + "/save.json";
@@ -75,6 +73,7 @@ public class GameState : MonoBehaviour
             _ui.ChooseWeaponPanelActivation();
             state = State.pause;
         }
+        SaveGame();
         _ui.SetRound(_currentRound + 1);
     }
     private void Update()
@@ -113,6 +112,7 @@ public class GameState : MonoBehaviour
         _player.SaveData();
         SaveData.currentRound = _currentRound;
         SaveData.VictoryStats = VictoryStats;
+        File.WriteAllText(Application.persistentDataPath + "/save.json", JsonUtility.ToJson(SaveData));
     }
     private void Timer(int amount)
     {
