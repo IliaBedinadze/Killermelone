@@ -2,7 +2,7 @@
     "enemies": [
         {
             "name": "SkeletonArcher",
-            "health": 7,
+            "health": 8,
             "speed": 1,
             "contactDamage": 5,
             "projectileDamage": 10,
@@ -13,7 +13,7 @@
         },
         {
             "name": "Zombie",
-            "health": 9,
+            "health": 10,
             "speed": 4,
             "contactDamage": 10,
             "projectileDamage": 0,
@@ -24,7 +24,7 @@
         },
         {
             "name": "SkeletonWarrior",
-            "health": 8,
+            "health": 11,
             "speed": 3,
             "contactDamage": 10,
             "projectileDamage": 12,
@@ -37,7 +37,7 @@
     "Bosses": [
         {
             "name": "VampireLord",
-            "health": 600,
+            "health": 1000,
             "speed": 8,
             "contactDamage": 20,
             "projectileDamage": 24,

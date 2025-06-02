@@ -130,7 +130,7 @@ public class GameState : MonoBehaviour
     {
         SaveGame();
         _roundUp = done;
-        if (TakeCurrentRound == 9)
+        if (TakeCurrentRound == 1)
             _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
         _audioController.StartStopSong("replace",_audioRecorder.ClipForRound);
@@ -149,5 +149,13 @@ public class GameState : MonoBehaviour
         GameObject[] currencies = GameObject.FindGameObjectsWithTag("currency");
         foreach(GameObject currency in currencies) Destroy(currency);
         _player.transform.position = Vector2.zero;
+    }
+    public void BossDefeated()
+    {
+        if(TakeCurrentRound == 9)
+        {
+            VictoryStats.VictoryState = true;
+            state = State.gameOver;
+        }
     }
 }

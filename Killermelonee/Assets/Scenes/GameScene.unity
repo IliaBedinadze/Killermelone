@@ -4516,6 +4516,7 @@ MonoBehaviour:
   _enemyBullet: {fileID: -5900614952112378415, guid: 924e577710d90f1478c3bd7a0605aa9e, type: 3}
   _bossDagger: {fileID: -7136426575228782590, guid: 1e60cbff64a1aa84e957082593324487, type: 3}
   _currency: {fileID: 4304910957177777655, guid: d0958dfb2258eb54597882dcce953ca2, type: 3}
+  _bossHpBar: {fileID: 5100175838498520698, guid: db255f48a87f3394485f6fb93dfe0dc1, type: 3}
   _enemyBullets:
   - name: SkeletonArcher
     EnemyBullet: {fileID: 465971255914269064, guid: 924e577710d90f1478c3bd7a0605aa9e, type: 3}

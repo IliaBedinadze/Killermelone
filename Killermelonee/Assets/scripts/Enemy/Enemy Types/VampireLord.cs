@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Zenject;
@@ -22,9 +23,13 @@ public class VampireLord : EnemyBase
     [SerializeField] private AudioClip[] vampireLaugh;
 
     [SerializeField] private Transform[] TeleportPoints;
+    private BossHpBar _bossHpBar;
+    private UI _ui;
     [Inject]
-    public void Constructor(EnemyList list)
+    public void Constructor(EnemyList list,BossHpBar bossHP,UI ui)
     {
+        _ui = ui;
+        _bossHpBar = bossHP;
         var enemystats = GetComponent<EnemyBase>();
 
         string json = JsonUtility.ToJson(list.Bosses[0]);
@@ -33,6 +38,14 @@ public class VampireLord : EnemyBase
     protected override void Start()
     {
         base.Start();
+
+        var panel = Instantiate(_bossHpBar.gameObject);
+        panel.transform.SetParent(_ui.transform, false);
+        var bossHPBar = panel.GetComponent<BossHpBar>();
+        bossHPBar.hpBar.maxValue = HP.Value;
+        bossHPBar.bossName.text = _enemyStats.name;
+        HP.Subscribe(x => bossHPBar.hpBar.value = x).AddTo(this);
+
         _colliders = GetComponents<Collider2D>();
         StartCoroutine(StartDelay());
     }

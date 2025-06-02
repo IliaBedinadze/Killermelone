@@ -11,6 +11,7 @@ public class EnemyInstaller : MonoInstaller
     [SerializeField] private EnemyBullet _enemyBullet;
     [SerializeField] private EnemyBullet _bossDagger;
     [SerializeField] private Currency _currency;
+    [SerializeField] private BossHpBar _bossHpBar;
     [Serializable]
     public class EnemyBullets
     {
@@ -21,6 +22,8 @@ public class EnemyInstaller : MonoInstaller
     [SerializeField] private GameObject enemy;
     public override void InstallBindings()
     {
+        Container.Bind<BossHpBar>().FromInstance(_bossHpBar).AsSingle();
+
         var enemyList = JsonUtility.FromJson<EnemyList>(enemyJsonFile.text);
         Container.Bind<EnemyList>().FromInstance(enemyList).AsSingle();
 

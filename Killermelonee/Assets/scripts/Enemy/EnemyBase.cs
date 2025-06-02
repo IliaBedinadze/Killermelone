@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 using Zenject.Asteroids;
@@ -13,13 +14,14 @@ public class EnemyBase : MonoBehaviour
     protected float _laserDamage;
     protected bool laserDelay = false;
 
-    //protected float _attackDelayTimer;
-
     [SerializeField] protected AudioClip deathClip;
     protected bool _alive;
     protected Enemy _enemyStats;
     protected Animator animator;
     protected AudioSource _audioSource;
+
+    private readonly ReactiveProperty<int> hp = new ReactiveProperty<int>(0);
+    public IReadOnlyReactiveProperty<int> HP => hp;
 
     //dependencies
     [Inject]
@@ -34,6 +36,7 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Start()
     {
+        hp.Value = (int)_enemyStats.health;
         _audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         _alive = true;
@@ -63,6 +66,8 @@ public class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(1);
         var ash = _currencyFactory.Create(Random.Range(_enemyStats.ashAmount[0], _enemyStats.ashAmount[1] + 1));
         ash.transform.position = transform.position;
+        if (_enemyStats.name == "VampireLord")
+            _gamestate.BossDefeated();
         Destroy(gameObject);
     }
     public void SetStats(Enemy enemystats)
@@ -73,6 +78,7 @@ public class EnemyBase : MonoBehaviour
     {
         _enemyStats.health -= amount;
         _gamestate.VictoryStats.DamageDone += (int)amount;
+        hp.Value -= (int)amount;
         if (_enemyStats.health <= 0)
         {
             _alive = false;
