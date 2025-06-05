@@ -7,9 +7,13 @@ using Zenject;
 
 public class ShowInfoPanel : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
+    [SerializeField] private string type;
     private bool _activation;
     [Inject]
     private InfoPanelFactory _infoPanelFactory;
+    [Inject]
+    private DescriptionPanelFactory _descriptionPanelFactory;
+    private DescriptionPanel _descriptionPanel;
     private InfoPanel _infoPanel;
 
     private UI _ui;
@@ -22,11 +26,36 @@ public class ShowInfoPanel : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartCoroutine(ShowInfo());
+        if(type == "WeaponIcon")
+            StartCoroutine(ShowInfo());
+        if(type == "Description")
+            StartCoroutine(ShowDescription());
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         _activation = false;
+    }
+    private IEnumerator ShowDescription()
+    {
+        _activation = true;
+        yield return new WaitForSeconds(0.2f);
+        if(_activation && GetComponent<StatsDescription>().Description != "")
+        {
+            var desc = GetComponent<StatsDescription>().Description;
+            var panel = _descriptionPanelFactory.Create(desc);
+            panel.transform.SetParent(_ui.transform, false);
+            panel.GetComponent<RectTransform>().pivot = PanelSet();
+
+            Vector2 localInput;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvas.GetComponent<RectTransform>(), Input.mousePosition, _canvas.worldCamera, out localInput);
+            panel.GetComponent<RectTransform>().localPosition = localInput;
+            if (_infoPanel != null)
+            {
+                Destroy(_infoPanel.gameObject);
+            }
+            _descriptionPanel = panel;
+            panel.SetPanel(gameObject.GetComponent<ShowInfoPanel>());
+        }
     }
     private IEnumerator ShowInfo()
     {
@@ -74,7 +103,7 @@ public class ShowInfoPanel : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     }
     private void OnDestroy()
     {
-        if(_infoPanel != null)
-            Destroy(_infoPanel.gameObject);
+        if(_infoPanel != null) Destroy(_infoPanel.gameObject);
+        if(_descriptionPanel != null) Destroy(_descriptionPanel.gameObject);
     }
 }

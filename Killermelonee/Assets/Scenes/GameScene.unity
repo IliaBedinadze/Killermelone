@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fba3c7bf349834b8cea8d20d7bcb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 13
   lvlUpAnim: {fileID: 7211073758511329801, guid: 275a44be8fa97804f81fc691caf68dc9, type: 3}
   leftHand: {fileID: 1480693518}
   rightHand: {fileID: 1437792205}
@@ -502,9 +502,9 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1549203659}
   - {fileID: 1480693518}
   - {fileID: 1437792205}
-  - {fileID: 1549203659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &135055617
@@ -603,8 +603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.34002686, y: 0}
+  m_SizeDelta: {x: -6.12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178313678
 MonoBehaviour:
@@ -774,7 +774,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 100
@@ -996,8 +996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.72998047, y: 0}
+  m_SizeDelta: {x: -8.26, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &496864062
 MonoBehaviour:
@@ -1247,12 +1247,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundsJsonText: {fileID: 4900000, guid: 8cc8c76c0a253cd4a9e17d78b401b527, type: 3}
   weaponJsonData: {fileID: 4900000, guid: 75be698390a6c374ab4cfb5b44e6c5ee, type: 3}
+  PlayerData: {fileID: 4900000, guid: c7fe09449aa4a6a4ebfe4c6d51309976, type: 3}
   _player: {fileID: 135055614}
   _uI: {fileID: 235110544}
   GameState: {fileID: 1572754398}
   _exceptionPanel: {fileID: 6060996512528505697, guid: 7437603895224104891a4264eb080f7c, type: 3}
   _sceneManagment: {fileID: 11400000, guid: 98de9133d62c16b46ad81722ea1ce0d8, type: 2}
   _infoPanel: {fileID: 8700689028690522986, guid: 3438e0bff1dbb6449828c85367d7c48d, type: 3}
+  _descriptionPanel: {fileID: 7752150925176202360, guid: 3a9041fdb7572ce4e8239956c134c3f1, type: 3}
   _canvas: {fileID: 235110547}
   _enemySpawnerController: {fileID: 1925387543}
   _audioRecorder: {fileID: 11400000, guid: 58974c04ae251dd44976dcabda0e7374, type: 2}
@@ -1697,10 +1699,10 @@ RectTransform:
   - {fileID: 286723229}
   m_Father: {fileID: 235110548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.75452083, y: 0.7005927}
-  m_AnchorMax: {x: 1, y: 0.83400005}
-  m_AnchoredPosition: {x: -25.700073, y: -4.130005}
-  m_SizeDelta: {x: 34.1, y: 1.93}
+  m_AnchorMin: {x: 0.73200005, y: 0.69500005}
+  m_AnchorMax: {x: 0.99600005, y: 0.8312223}
+  m_AnchoredPosition: {x: -0.20007324, y: 0.36999512}
+  m_SizeDelta: {x: -0.9000015, y: -1.0699997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &914346220
 MonoBehaviour:
@@ -2503,7 +2505,7 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 66e8ca4c866baa64fab539cd05765d0f, type: 3}
   m_LocalAABB:
     m_Center: {x: 15, y: -55, z: 0}
-    m_Extent: {x: 126.47, y: 76.47, z: 0}
+    m_Extent: {x: 126.47006, y: 76.47, z: 0}
   m_SpriteSortPoint: 0
 --- !u!4 &1175933419
 Transform:
@@ -2614,10 +2616,10 @@ RectTransform:
   - {fileID: 1143724950}
   m_Father: {fileID: 235110548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.75452083, y: 0.83400005}
-  m_AnchorMax: {x: 1, y: 0.96900004}
-  m_AnchoredPosition: {x: -25.699951, y: -3.2000732}
-  m_SizeDelta: {x: 34.1, y: -0.07}
+  m_AnchorMin: {x: 0.73200005, y: 0.8312223}
+  m_AnchorMax: {x: 0.99600005, y: 0.966}
+  m_AnchoredPosition: {x: 0.8000488, y: -0.20007324}
+  m_SizeDelta: {x: -2.9000015, y: -0.069999695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220285931
 MonoBehaviour:
@@ -4662,8 +4664,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 5d2a565e57164fe44a3ff03c3e5872d6, type: 3}
   - {fileID: 21300000, guid: 5d2a565e57164fe44a3ff03c3e5872d6, type: 3}
   m_LocalAABB:
-    m_Center: {x: 40.500008, y: -0.0000076293945, z: 0}
-    m_Extent: {x: 60.98536, y: 41.48536, z: 0}
+    m_Center: {x: 40.500004, y: -0.0000076293945, z: 0}
+    m_Extent: {x: 60.9858, y: 41.48561, z: 0}
   m_SpriteSortPoint: 0
 --- !u!4 &2130836279
 Transform:

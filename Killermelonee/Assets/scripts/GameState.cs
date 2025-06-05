@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,7 @@ public class GameState : MonoBehaviour
     {
         if (ContinueState)
         {
+            _audioController.StartStopSong("play", _audioRecorder.ClipForRound);
             string path = Application.persistentDataPath + "/save.json";
             if (File.Exists(Application.persistentDataPath + "/save.json"))
             {
@@ -64,7 +66,7 @@ public class GameState : MonoBehaviour
                 WeaponData left = SaveData.LeftHand != null ? SaveData.LeftHand : null;
                 WeaponData right = SaveData.RightHand != null ? SaveData.RightHand : null;
                 _player.InitializeWeapon(left,right);
-                _player.InitializePlayerData(SaveData.currMaxHP,SaveData.currMaxXP,SaveData.ashAmount);
+                _player.InitializePlayerData(SaveData.PlayerStats);
                 _management.Continue = false;
             }
         }
@@ -130,7 +132,7 @@ public class GameState : MonoBehaviour
     {
         SaveGame();
         _roundUp = done;
-        if (TakeCurrentRound == 1)
+        if (TakeCurrentRound == 9)
             _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
         _audioController.StartStopSong("replace",_audioRecorder.ClipForRound);

@@ -9,12 +9,14 @@ public class gameInstaller : MonoInstaller
 {
     [SerializeField] private TextAsset roundsJsonText;
     [SerializeField] private TextAsset weaponJsonData;
+    [SerializeField] private TextAsset PlayerData;
     [SerializeField] private Player _player;
     [SerializeField] private UI _uI;
     [SerializeField] private GameState GameState;
     [SerializeField] private ExceptionPanel _exceptionPanel;
     [SerializeField] private SceneManagementSc _sceneManagment;
     [SerializeField] private InfoPanel _infoPanel;
+    [SerializeField] private DescriptionPanel _descriptionPanel;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private EnemySpawnerController _enemySpawnerController;
     [SerializeField] private AudioRecorder _audioRecorder;
@@ -27,7 +29,16 @@ public class gameInstaller : MonoInstaller
         var weapons = JsonUtility.FromJson<WeaponList>(weaponJsonData.text);
         Container.Bind<WeaponList>().FromInstance(weapons).AsSingle();
 
-        Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
+        Container.BindFactory<string, DescriptionPanel,DescriptionPanelFactory>().FromMethod((container, text) =>
+        {
+            var panel = container.InstantiatePrefab(_descriptionPanel);
+            var descr = panel.GetComponent<DescriptionPanel>();
+
+            descr.SetDescription(text);
+            container.Inject(descr);
+            return descr;
+        });
+
         Container.BindFactory<WeaponData, InfoPanel, InfoPanelFactory>().FromMethod((container, data) =>
         {
             var panel = container.InstantiatePrefab(_infoPanel);
@@ -37,6 +48,7 @@ public class gameInstaller : MonoInstaller
             container.Inject(info);
             return info;
         });
+        Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
         Container.Bind<SceneManagementSc>().FromInstance(_sceneManagment).AsSingle();
         Container.Bind<ExceptionPanel>().FromInstance(_exceptionPanel).AsSingle();
         Container.Bind<GameState>().FromInstance(GameState).AsSingle();
@@ -46,5 +58,7 @@ public class gameInstaller : MonoInstaller
         Container.Bind<EnemySpawnerController>().FromInstance(_enemySpawnerController).AsSingle();
         Container.Bind<AudioRecorder>().FromInstance(_audioRecorder).AsSingle();
         Container.Bind<SceneAudioController>().FromInstance(_audioController).AsSingle();
+        var Heroes = JsonUtility.FromJson<Heroes>(PlayerData.text);
+        Container.Bind<Heroes>().FromInstance(Heroes).AsSingle();
     }
 }

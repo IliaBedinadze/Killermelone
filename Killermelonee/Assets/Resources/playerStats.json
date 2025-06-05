@@ -1,0 +1,17 @@
+{
+    "HeroTypes": [
+        {
+            "Name": "Watermelone",
+            "HP": 100,
+            "MaxHP": 100,
+            "XP": 0,
+            "MaxXP": 1000,
+            "Speed": 1,
+            "Damage": 1,
+            "AttackSpeed": 1,
+            "Pierce": 0,
+            "Velocity": 1,
+            "Farm": 1
+        }
+    ]
+}
