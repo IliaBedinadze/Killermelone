@@ -28,15 +28,17 @@ public class EnemyBase : MonoBehaviour
     protected CurrencyFactory _currencyFactory; 
     protected GameState _gamestate;
     protected Transform _player;
+    protected RoundsData _roundsData;
     [Inject]
-    private void Construct(Transform player, GameState gamestate)
+    private void Construct(Transform player, GameState gamestate,RoundsData roundData)
     {
         _player = player;
         _gamestate = gamestate;
+        _roundsData = roundData;
     }
     protected virtual void Start()
     {
-        hp.Value = (int)_enemyStats.health;
+        hp.Value = (int)(_enemyStats.health * _roundsData.roundData[_gamestate.TakeCurrentRound].enemyScale);
         _audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         _alive = true;
@@ -87,7 +89,7 @@ public class EnemyBase : MonoBehaviour
     }
     private IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         laserDelay = false;
     }
     public void HittenByLaser(bool statement,float damageAmount)

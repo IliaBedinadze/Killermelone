@@ -130,7 +130,7 @@ public class GameState : MonoBehaviour
     {
         SaveGame();
         _roundUp = done;
-        if (TakeCurrentRound == 1)
+        if (TakeCurrentRound == 9)
             _enemySpawnerController.SpawnBoss("VampireLord");
         _ui.SetRound(_currentRound + 1);
         _audioController.StartStopSong("replace",_audioRecorder.ClipForRound);
