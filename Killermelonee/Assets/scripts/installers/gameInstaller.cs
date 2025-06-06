@@ -10,6 +10,7 @@ public class gameInstaller : MonoInstaller
     [SerializeField] private TextAsset roundsJsonText;
     [SerializeField] private TextAsset weaponJsonData;
     [SerializeField] private TextAsset PlayerData;
+    [SerializeField] private TextAsset ItemData;
     [SerializeField] private Player _player;
     [SerializeField] private UI _uI;
     [SerializeField] private GameState GameState;
@@ -28,6 +29,9 @@ public class gameInstaller : MonoInstaller
 
         var weapons = JsonUtility.FromJson<WeaponList>(weaponJsonData.text);
         Container.Bind<WeaponList>().FromInstance(weapons).AsSingle();
+
+        var items = JsonUtility.FromJson<ItemList>(ItemData.text);
+        Container.Bind<ItemList>().FromInstance(items).AsSingle();
 
         Container.BindFactory<string, DescriptionPanel,DescriptionPanelFactory>().FromMethod((container, text) =>
         {

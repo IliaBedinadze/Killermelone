@@ -1248,6 +1248,7 @@ MonoBehaviour:
   roundsJsonText: {fileID: 4900000, guid: 8cc8c76c0a253cd4a9e17d78b401b527, type: 3}
   weaponJsonData: {fileID: 4900000, guid: 75be698390a6c374ab4cfb5b44e6c5ee, type: 3}
   PlayerData: {fileID: 4900000, guid: c7fe09449aa4a6a4ebfe4c6d51309976, type: 3}
+  ItemData: {fileID: 4900000, guid: 94cd57328ad2410489d633deee3ef808, type: 3}
   _player: {fileID: 135055614}
   _uI: {fileID: 235110544}
   GameState: {fileID: 1572754398}
@@ -2505,7 +2506,7 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 66e8ca4c866baa64fab539cd05765d0f, type: 3}
   m_LocalAABB:
     m_Center: {x: 15, y: -55, z: 0}
-    m_Extent: {x: 126.47006, y: 76.47, z: 0}
+    m_Extent: {x: 126.47, y: 76.47, z: 0}
   m_SpriteSortPoint: 0
 --- !u!4 &1175933419
 Transform:
@@ -4664,8 +4665,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 5d2a565e57164fe44a3ff03c3e5872d6, type: 3}
   - {fileID: 21300000, guid: 5d2a565e57164fe44a3ff03c3e5872d6, type: 3}
   m_LocalAABB:
-    m_Center: {x: 40.500004, y: -0.0000076293945, z: 0}
-    m_Extent: {x: 60.9858, y: 41.48561, z: 0}
+    m_Center: {x: 40.500008, y: -0.0000076293945, z: 0}
+    m_Extent: {x: 60.98536, y: 41.48536, z: 0}
   m_SpriteSortPoint: 0
 --- !u!4 &2130836279
 Transform:

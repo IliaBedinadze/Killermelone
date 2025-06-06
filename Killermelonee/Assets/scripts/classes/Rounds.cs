@@ -13,6 +13,7 @@ public class RoundStats
 {
     public int roundTimer;      // time amount for round complete
     public int[] roundRarity;   // weapon rarity chance on shop
+    public int[] itemRoundRarity; //item rarity chance
     public int[] refreshCost;   // shop refresh goods cost
     public float enemyScale;    // scale for enemy
     public EnemyByRound enemyByRound;

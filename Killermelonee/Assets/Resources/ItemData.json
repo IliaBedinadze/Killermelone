@@ -1,0 +1,192 @@
+{
+    "CommonItems": [
+        {
+            "Name": "Rollers",
+            "Price": 110,
+            "Description": "Speed: +5%",
+            "SpritePath": "ItemIcons/rollers",
+            "PlayerStats": {
+                "Speed": 0.05
+            }
+        },
+        {
+            "Name": "Ammunition",
+            "Price": 125,
+            "Description": "Attack Speed: +7%",
+            "SpritePath": "ItemIcons/ammunition",
+            "PlayerStats": {
+                "AttackSpeed": 0.07
+            }
+        },
+        {
+            "Name": "Skull Trinket",
+            "Price": 100,
+            "Description": "Farm: +1",
+            "SpritePath": "ItemIcons/skull trinket",
+            "PlayerStats": {
+                "Farm": 1
+            }
+        },
+        {
+            "Name": "Gloves",
+            "Price": 140,
+            "Description": "Damage: +3%\nAttack Speed: +3%",
+            "SpritePath": "ItemIcons/gloves",
+            "PlayerStats": {
+                "Damage": 0.03,
+                "AttackSpeed": 0.03
+            }
+        },
+        {
+            "Name": "Spring",
+            "Price": 100,
+            "Description": "Bullet Velocity: +10%",
+            "SpritePath": "ItemIcons/spring",
+            "PlayerStats": {
+                "Velocity": 0.1
+            }
+        },
+        {
+            "Name": "Bloody Syringe",
+            "Price": 50,
+            "Description": "Restore 30 HP",
+            "SpritePath": "ItemIcons/bloody syringe",
+            "PlayerStats": {
+                "HP": 30
+            }
+        },
+        {
+            "Name": "Heart",
+            "Price": 120,
+            "Description": "Max HP: +30",
+            "SpritePath": "ItemIcons/heart",
+            "PlayerStats": {
+                "MaxHP": 30
+            }
+        }
+    ],
+
+
+
+    "RareItems": [
+        {
+            "Name": "Beard",
+            "Price": 250,
+            "Description": "Max HP: -5\nDamage: +5%\nSpeed: -2%\nFarm: +1",
+            "SpritePath": "ItemIcons/beard",
+            "PlayerStats": {
+                "MaxHP": -5,
+                "Damage": 0.05,
+                "Speed": -0.02,
+                "Farm": 1
+            }
+        },
+        {
+            "Name": "Mutator Syringe",
+            "Price": 300,
+            "Description": "Max HP: -10\nSpeed: +10%\nDamage: +10%",
+            "SpritePath": "ItemIcons/mutator syringe",
+            "PlayerStats": {
+                "MaxHP": -10,
+                "Speed": 0.1,
+                "Damage": 0.1
+            }
+        },
+        {
+            "Name": "Tombsotone",
+            "Price": 350,
+            "Description": "Damage: -8%\nFarm: +4",
+            "SpritePath": "ItemIcons/tombstone",
+            "PlayerStats": {
+                "Farm": 4,
+                "Damage": -0.08
+            }
+        }
+    ],
+
+
+
+    "EpicItems": [
+        {
+            "Name": "Crazy Tomato",
+            "Price": 1200,
+            "Description": "Max HP: -20\nDamage: +15%\nSpeed: +8%",
+            "SpritePath": "ItemIcons/crazy tomato",
+            "PlayerStats": {
+                "MaxHP": -20,
+                "Damage": 0.15,
+                "Speed": 0.08
+            }
+        },
+        {
+            "Name": "Sniper Scope",
+            "Price": 1500,
+            "Description": "Damage: +10%\nPierce: +1\nVelocity: +10%",
+            "SpritePath": "ItemIcons/scope",
+            "PlayerStats": {
+                "Damage": 0.1,
+                "Pierce": 1,
+                "Velocity": 0.1
+            }
+        },
+        {
+            "Name": "Thorn Bullet",
+            "Price": 1000,
+            "Description": "Damage: +20%\nPierce: +1\nVelocity: -20%",
+            "SpritePath": "ItemIcons/thorn bullet",
+            "PlayerStats": {
+                "Damage": 0.2,
+                "Pierce": 1,
+                "Velocity": -0.2
+            }
+        }
+    ],
+
+
+
+    "LegendaryItems": [
+        {
+            "Name": "Bloody Boots",
+            "Price": 2200,
+            "Description": "Restore 50HP\nMax HP: +50\nDamage: +20%\nSpeed: -20%",
+            "SpritePath": "ItemIcons/blood boots",
+            "PlayerStats": {
+                "HP": 50,
+                "MaxHP": 50,
+                "Damage": 0.2,
+                "Speed": -0.2
+            }
+        },
+        {
+            "Name": "Gunpowder",
+            "Price": 1900,
+            "Description": "Damage: +10%\nAttack Speed: +15%\nVelocity: +40%\nFarm: -2",
+            "SpritePath": "ItemIcons/gun poweder",
+            "PlayerStats": {
+                "Damage": 0.1,
+                "AttackSpeed": 0.15,
+                "Velocity": 0.4,
+                "Farm": -2
+            }
+        }
+    ],
+
+
+
+    "UniqueItems": [
+        {
+            "Name": "Demon Deal",
+            "Price": 2800,
+            "Description": "MaxHP: -80\nDamage: +30%\nSpeed: +20%\nAttackSpeed: +20%\nVelocity: +40%\nFarm: +5",
+            "SpritePath": "ItemIcons/pentagram",
+            "PlayerStats": {
+                "MaxHP": -80,
+                "Damage": 0.3,
+                "Speed": 0.2,
+                "AttackSpeed": 0.2,
+                "Velocity": 0.4,
+                "Farm": 5
+            }
+        }
+    ]
+}

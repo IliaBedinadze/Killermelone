@@ -35,13 +35,15 @@ public class Shop : MonoBehaviour
     private Player _player;
     private ExceptionPanel _exceptionPanel;
     private List<WeaponData> _weaponList;
+    private ItemList _itemList;
     private SceneAudioController _sceneAudioController;
     [Inject]
     public DiContainer container;
     [Inject]
-    public void Constructor(GameState state, UI ui, Player player, ExceptionPanel exceptionPanel, RoundsData roundData, WeaponList weaponList,SceneAudioController audioController)
+    public void Constructor(GameState state, UI ui, Player player, ExceptionPanel exceptionPanel, RoundsData roundData, WeaponList weaponList,SceneAudioController audioController,ItemList itemList)
     {
         _weaponList = weaponList.Weapons;
+        _itemList = itemList;
         _state = state;
         _ui = ui;
         _player = player;
@@ -105,6 +107,7 @@ public class Shop : MonoBehaviour
             button.onClick.AddListener(delegate { BuyWeapon(button.GetComponent<WeaponIcon>()); });
         }
     }
+    // weapon buy code
     private void BuyWeapon(WeaponIcon weapon)
     {
         if (weapon.weaponData.TakeCurrentPrice <= _player.ashNum.Value)
@@ -161,6 +164,7 @@ public class Shop : MonoBehaviour
             panel.transform.SetParent(_ui.transform, false);
         }
     }
+    // sell item code
     private void Sell(string hand)
     {
         if (hand == "right" && _weaponRight != null)
@@ -180,6 +184,7 @@ public class Shop : MonoBehaviour
             _sceneAudioController.PlayClick();
         }
     }
+    // initialize player weapon on shop
     private void InitializePlayerWeapon(bool state, string hand)
     {
         if (hand == "left")
@@ -205,6 +210,7 @@ public class Shop : MonoBehaviour
                 handRight.InitializeSellItem(false, empty);
         }
     }
+    // return random weapon
     private WeaponData RandomWeapon()
     {
         var rarity = GetRandomRarity(_roundStats.roundRarity);
@@ -214,9 +220,10 @@ public class Shop : MonoBehaviour
         weapon.currentLevel = rarity;
         return weapon;
     }
+    // return random rarity, depends on round
     private int GetRandomRarity(int[] chances)
     {
-        int chance = UnityEngine.Random.Range(1, 101);
+        int chance = Random.Range(1, 101);
         if (chance <= chances[0])
             return 0;
         else if (chances[0] < chance && chance <= chances[1])
@@ -228,6 +235,7 @@ public class Shop : MonoBehaviour
         else
             return 4;
     }
+    // checks if weapons are same
     private bool WeaponAreSame(WeaponData one, WeaponData two)
     {
         if (one.name == two.name && one.currentLevel == two.currentLevel && one.currentLevel != 4)
@@ -235,5 +243,20 @@ public class Shop : MonoBehaviour
             return true;
         }
         return false;
+    }
+    // returns random item
+    private ItemStats RandomItem()
+    {
+        var rarity = GetRandomRarity(_roundStats.roundRarity);
+        if(rarity == 0)
+            return _itemList.CommonItems[Random.Range(0, _itemList.CommonItems.Length)];
+        else if(rarity == 1)
+            return _itemList.RareItems[Random.Range(0, _itemList.RareItems.Length)];
+        else if(rarity == 2)
+            return _itemList.EpicItems[Random.Range(0,_itemList.EpicItems.Length)];
+        else if(rarity == 3)
+            return _itemList.LegendaryItems[Random.Range(0,_itemList.LegendaryItems.Length)];
+        else
+            return _itemList.UniqueItems[Random.Range(0,_itemList.UniqueItems.Length)];
     }
 }

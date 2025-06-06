@@ -14,18 +14,18 @@ public class Heroes
 public class PlayerStats
 {
     public string Name;
-    public int HP;
-    public int MaxHP;
-    public float XP;
-    public float MaxXP;
-    public int Pierce;
-    public int AshAmount;
+    public int HP = 0;
+    public int MaxHP = 0;
+    public float XP = 0;
+    public float MaxXP = 0;
+    public int Pierce = 0;
+    public int AshAmount = 0;
     //Multipliers
-    public float Speed;
-    public float Damage;
-    public float AttackSpeed;
-    public float Velocity;
-    public float Farm;
+    public float Speed = 0;
+    public float Damage = 0;
+    public float AttackSpeed = 0;
+    public float Velocity = 0;
+    public float Farm = 0;
 }
 public class PlayerReactiveStats
 {
