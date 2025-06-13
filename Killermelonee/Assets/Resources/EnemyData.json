@@ -2,7 +2,7 @@
     "enemies": [
         {
             "name": "SkeletonArcher",
-            "health": 8,
+            "health": 9,
             "speed": 1,
             "contactDamage": 5,
             "projectileDamage": 7,
@@ -14,33 +14,44 @@
         {
             "name": "Zombie",
             "health": 10,
-            "speed": 3,
+            "speed": 4,
             "contactDamage": 10,
             "projectileDamage": 0,
             "XPGain": 100,
             "shootRate": 0,
-            "ashAmount": [ 4, 6 ],
+            "ashAmount": [ 3, 6 ],
             "prefPath": "Enemy/Zombie"
         },
         {
             "name": "SkeletonWarrior",
             "health": 11,
-            "speed": 2.6,
+            "speed": 3,
             "contactDamage": 10,
             "projectileDamage": 9,
             "XPGain": 70,
             "shootRate": 2.2,
-            "ashAmount": [ 4, 8 ],
+            "ashAmount": [ 5, 9 ],
             "prefPath": "Enemy/SkeletonWarrior"
+        },
+        {
+            "name": "StoneGolem",
+            "health": 20,
+            "speed": 2,
+            "contactDamage": 10,
+            "projectileDamage": 12,
+            "XPGain": 120,
+            "shootRate": 2.2,
+            "ashAmount": [ 8, 15 ],
+            "prefPath": "Enemy/StoneGolem"
         }
     ],
     "Bosses": [
         {
             "name": "VampireLord",
             "health": 1000,
-            "speed": 3,
-            "contactDamage": 10,
-            "projectileDamage": 17,
+            "speed": 8,
+            "contactDamage": 20,
+            "projectileDamage": 24,
             "XPGain": 3000,
             "shootRate": 2,
             "ashAmount": [ 100, 150 ],

@@ -50,7 +50,6 @@ public class SkeletonArcher : EnemyBase
         float shootAnimation = stateInfo.length;
 
         Vector2 direction = (_player.transform.position - transform.position).normalized;
-        Debug.Log(_enemyStats.name);
         var go = _enemyBulletFactory.Create( direction, _enemyStats.projectileDamage,_enemyStats.name);
         go.transform.position = transform.position;
 

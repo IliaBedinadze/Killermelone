@@ -1,0 +1,216 @@
+{
+    "CommonItems": [
+        {
+            "Name": "Rollers",
+            "Rarity": "Common",
+            "Price": 45,
+            "PlusStats": ["speed: +5%"],
+            "SpritePath": "ItemIcons/rollers",
+            "PlayerStats": {
+                "Speed": 0.051
+            }
+        },
+        {
+            "Name": "Ammunition",
+            "Rarity": "Common",
+            "Price": 55,
+            "PlusStats": [ "Attack Speed: +7%" ],
+            "SpritePath": "ItemIcons/ammunition",
+            "PlayerStats": {
+                "AttackSpeed": 0.071
+            }
+        },
+        {
+            "Name": "Skull Trinket",
+            "Rarity": "Common",
+            "Price": 50,
+            "PlusStats": [ "Farm: +1" ],
+            "SpritePath": "ItemIcons/skull trinket",
+            "PlayerStats": {
+                "Farm": 1
+            }
+        },
+        {
+            "Name": "Gloves",
+            "Rarity": "Common",
+            "Price": 70,
+            "PlusStats": [ "Damage: +3%", "Attack Speed: +3%" ],
+            "SpritePath": "ItemIcons/gloves",
+            "PlayerStats": {
+                "Damage": 0.031,
+                "AttackSpeed": 0.031
+            }
+        },
+        {
+            "Name": "Spring",
+            "Rarity": "Common",
+            "Price": 40,
+            "PlusStats": [ "Bullet Velocity: +10%" ],
+            "SpritePath": "ItemIcons/spring",
+            "PlayerStats": {
+                "Velocity": 0.101
+            }
+        },
+        {
+            "Name": "Bloody Syringe",
+            "Rarity": "Common",
+            "Price": 30,
+            "PlusStats": [ "Restore 30 HP" ],
+            "SpritePath": "ItemIcons/bloody syringe",
+            "PlayerStats": {
+                "HP": 30
+            }
+        },
+        {
+            "Name": "Heart",
+            "Rarity": "Common",
+            "Price": 90,
+            "PlusStats": [ "Restores 30 HP", "Max HP: +30" ],
+            "SpritePath": "ItemIcons/heart",
+            "PlayerStats": {
+                "HP": 30,
+                "MaxHP": 30
+            }
+        }
+    ],
+
+
+
+    "RareItems": [
+        {
+            "Name": "Beard",
+            "Rarity": "Rare",
+            "Price": 190,
+            "PlusStats": [ "Damage: +5%", "Farm: +1" ],
+            "MinusStats": [ "Speed: -2%", "Max HP: -5" ],
+            "SpritePath": "ItemIcons/beard",
+            "PlayerStats": {
+                "MaxHP": -5,
+                "Damage": 0.051,
+                "Speed": -0.021,
+                "Farm": 1
+            }
+        },
+        {
+            "Name": "Mutator Syringe",
+            "Rarity": "Rare",
+            "Price": 230,
+            "PlusStats": [ "Speed: +10%", "Damage: +10%" ],
+            "MinusStats": [ "Max HP: -10" ],
+            "SpritePath": "ItemIcons/mutator syringe",
+            "PlayerStats": {
+                "MaxHP": -10,
+                "Speed": 0.101,
+                "Damage": 0.101
+            }
+        },
+        {
+            "Name": "Tombstone",
+            "Rarity": "Rare",
+            "Price": 300,
+            "PlusStats": [ "Farm: +4" ],
+            "MinusStats": [ "Damage: -8%" ],
+            "SpritePath": "ItemIcons/tombstone",
+            "PlayerStats": {
+                "Farm": 4,
+                "Damage": -0.081
+            }
+        }
+    ],
+
+
+
+    "EpicItems": [
+        {
+            "Name": "Crazy Tomato",
+            "Rarity": "Epic",
+            "Price": 540,
+            "PlusStats": [ "Damage: +15%", "Speed: +8%" ],
+            "MinusStats": [ "MaxHP: -20" ],
+            "SpritePath": "ItemIcons/crazy tomato",
+            "PlayerStats": {
+                "MaxHP": -20,
+                "Damage": 0.151,
+                "Speed": 0.081
+            }
+        },
+        {
+            "Name": "Sniper Scope",
+            "Rarity": "Epic",
+            "Price": 600,
+            "PlusStats": [ "Damage: +10%", "Pierce: +1", "Velocity: +10%" ],
+            "SpritePath": "ItemIcons/scope",
+            "PlayerStats": {
+                "Damage": 0.101,
+                "Pierce": 1,
+                "Velocity": 0.101
+            }
+        },
+        {
+            "Name": "Thorn Bullet",
+            "Rarity": "Epic",
+            "Price": 400,
+            "PlusStats": [ "Damage: +15%" ],
+            "MinusStats": [ "Velocity: -15%" ],
+            "SpritePath": "ItemIcons/thorn bullet",
+            "PlayerStats": {
+                "Damage": 0.151,
+                "Velocity": -0.151
+            }
+        }
+    ],
+
+
+
+    "LegendaryItems": [
+        {
+            "Name": "Bloody Boots",
+            "Rarity": "Legendary",
+            "Price": 1000,
+            "PlusStats": [ "Full HP", "Max HP: +50", "Damage: +20%" ],
+            "MinusStats": [ "Speed: -20%" ],
+            "SpritePath": "ItemIcons/blood boots",
+            "PlayerStats": {
+                "HP": 5000,
+                "MaxHP": 50,
+                "Damage": 0.201,
+                "Speed": -0.201
+            }
+        },
+        {
+            "Name": "Gunpowder",
+            "Rarity": "Legendary",
+            "Price": 890,
+            "PlusStats": [ "Damage: +10%", "Attack Speed: +20%", "Velocity: +30%" ],
+            "MinusStats": [ "Farm: -3" ],
+            "SpritePath": "ItemIcons/gun powder",
+            "PlayerStats": {
+                "Damage": 0.101,
+                "AttackSpeed": 0.201,
+                "Velocity": 0.301,
+                "Farm": -3
+            }
+        }
+    ],
+
+
+
+    "UniqueItems": [
+        {
+            "Name": "Demon Deal",
+            "Rarity": "Unique",
+            "Price": 2300,
+            "PlusStats": [ "Damage: +30%", "Speed: +20%", "Attack Speed: +20%", "Velocity: +20%", "Farm: +5" ],
+            "MinusStats": [ "Max HP: -120" ],
+            "SpritePath": "ItemIcons/pentagram",
+            "PlayerStats": {
+                "MaxHP": -120,
+                "Damage": 0.301,
+                "Speed": 0.201,
+                "AttackSpeed": 0.201,
+                "Velocity": 0.201,
+                "Farm": 5
+            }
+        }
+    ]
+}

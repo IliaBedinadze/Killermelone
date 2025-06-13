@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,9 @@ public class GameState : MonoBehaviour
 {
     [NonSerialized] public Save SaveData = new Save();
     [NonSerialized] public VictoryStats VictoryStats = new VictoryStats(0,0,0,0,0);
+
+    [SerializeField] private GameObject[] playGrounds;
+
     private UI _ui;
     private RoundStats[] _roundsData;
     private Player _player;
@@ -31,6 +35,7 @@ public class GameState : MonoBehaviour
     }
     public enum State
     {
+        choosing,
         playing,
         pause,
         roundOver,
@@ -53,6 +58,8 @@ public class GameState : MonoBehaviour
     private bool _roundUp = false;
     private void Start()
     {
+        //var i = UnityEngine.Random.Range(0, playGrounds.Length);
+        //Instantiate(playGrounds[i]);
         if (ContinueState)
         {
             string path = Application.persistentDataPath + "/save.json";
@@ -64,14 +71,15 @@ public class GameState : MonoBehaviour
                 WeaponData left = SaveData.LeftHand != null ? SaveData.LeftHand : null;
                 WeaponData right = SaveData.RightHand != null ? SaveData.RightHand : null;
                 _player.InitializeWeapon(left,right);
-                _player.InitializePlayerData(SaveData.currMaxHP,SaveData.currMaxXP,SaveData.ashAmount);
+                _player.InitializePlayerData(SaveData.PlayerStats);
                 _management.Continue = false;
             }
+            _audioController.StartStopSong("play", _audioRecorder.ClipForRound);
         }
         else
         {
             _ui.ChooseWeaponPanelActivation();
-            state = State.pause;
+            state = State.choosing;
         }
         SaveGame();
         _ui.SetRound(_currentRound + 1);

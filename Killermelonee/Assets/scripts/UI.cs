@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
+using static Zenject.CheatSheet;
 using GS = GameState.State;
 
 public class UI : MonoBehaviour
@@ -33,12 +34,16 @@ public class UI : MonoBehaviour
     private Player _player;
     private GameState _gameState;
     private SceneAudioController _sceneAudioController;
+    private UI _ui;
+    private ExceptionPanel _exceptionPanel;
     [Inject]
-    private void Construct(GameState gameState,Player player,SceneAudioController audioController)
+    private void Construct(GameState gameState,Player player,SceneAudioController audioController,UI ui,ExceptionPanel exception)
     {
         _gameState = gameState;
         _player = player;
         _sceneAudioController = audioController;
+        _ui = ui;
+        _exceptionPanel = exception;
     }
     private IEnumerator Start()
     {
@@ -57,14 +62,14 @@ public class UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_panelActivated)
+            if (_panelActivated && _gameState.state == GS.pause)
             {
                 _sceneAudioController.QuietLouderSong(false);
                 Destroy(_CurrentPanel);
                 _panelActivated = false;
                 _gameState.state = _previousState;
             }
-            else if (!_panelActivated)
+            else if (!_panelActivated && _gameState.state == GS.playing)
             {
                 _sceneAudioController.QuietLouderSong(true);
                 _CurrentPanel = _container.InstantiatePrefab(pauseMenu.gameObject);
@@ -73,6 +78,12 @@ public class UI : MonoBehaviour
                 _panelActivated = true;
                 _gameState.state = GS.pause;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && !(_gameState.state == GS.playing) && !(_gameState.state == GS.pause))
+        {
+            var panel = _container.InstantiatePrefab(_exceptionPanel.gameObject);
+            panel.GetComponent<ExceptionPanel>().SetMassage("you can pause only on round playtime!");
+            panel.transform.SetParent(_ui.transform, false);
         }
         if(_gameState.state == GS.gameOver && !_gameOverActivated)
         {
