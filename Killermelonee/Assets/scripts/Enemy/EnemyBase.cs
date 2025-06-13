@@ -20,8 +20,8 @@ public class EnemyBase : MonoBehaviour
     protected Animator animator;
     protected AudioSource _audioSource;
 
-    private readonly ReactiveProperty<int> hp = new ReactiveProperty<int>(0);
-    public IReadOnlyReactiveProperty<int> HP => hp;
+    private readonly ReactiveProperty<float> hp = new ReactiveProperty<float>(0);
+    public IReadOnlyReactiveProperty<float> HP => hp;
 
     //dependencies
     [Inject]
@@ -36,7 +36,7 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Start()
     {
-        hp.Value = (int)_enemyStats.health;
+        hp.Value = _enemyStats.health;
         _audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         _alive = true;
@@ -76,26 +76,27 @@ public class EnemyBase : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
-        _enemyStats.health -= amount;
+        hp.Value -= amount;
         _gamestate.VictoryStats.DamageDone += (int)amount;
-        hp.Value -= (int)amount;
-        if (_enemyStats.health <= 0)
+        if (hp.Value <= 0)
         {
             _alive = false;
             StartCoroutine(Death());
         }
     }
+    // delay for laser effect below
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(0.3f);
         laserDelay = false;
     }
+    // enemy undel laser effect
     public void HittenByLaser(bool statement,float damageAmount)
     {
         _underLaser = statement;
         _laserDamage = damageAmount;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

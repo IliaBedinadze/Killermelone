@@ -155,7 +155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5134916, y: 4.377715}
+  m_Size: {x: 2.5134916, y: 5.02}
   m_EdgeRadius: 0
 --- !u!61 &7581369888200135353
 BoxCollider2D:
@@ -189,7 +189,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.76461446, y: 2.8147368}
+  m_Offset: {x: 0.89, y: 2.01}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -200,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.86514544, y: 2.1691616}
+  m_Size: {x: 1.47, y: 3.97}
   m_EdgeRadius: 0
 --- !u!114 &-466780861473495277
 MonoBehaviour:
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aeb1cc8e8828ea4f8a0e8ac9481c185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: SkeletonArcher
   deathClip: {fileID: 8300000, guid: 7082514b9d5f45e4287b79c2a9ef4513, type: 3}
 --- !u!50 &7186169871312040352
 Rigidbody2D:

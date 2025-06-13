@@ -84,7 +84,6 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             if (j >= 5) break;
         }
-        Debug.Log("here");
         gameObject.SetActive(false);
     }
     private void OnEnable()

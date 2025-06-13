@@ -11,7 +11,7 @@
             "AttackSpeed": 1,
             "Pierce": 0,
             "Velocity": 1,
-            "Farm": 1
+            "Farm": 0
         }
     ]
 }

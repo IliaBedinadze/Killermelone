@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 347202839175493210}
   - component: {fileID: 1272270167601490804}
   - component: {fileID: 6290578975927813480}
+  - component: {fileID: 7097501497987393888}
   m_Layer: 6
   m_Name: SkeletonWarrior
   m_TagString: enemy
@@ -125,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c9a6459f81036429e7f8dcb646e0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: SkeletonWarrior
   deathClip: {fileID: 8300000, guid: 7082514b9d5f45e4287b79c2a9ef4513, type: 3}
   lookPoint: {fileID: 8334363210445350319}
   hitPoint: {fileID: 8765391027679108300}
@@ -258,7 +258,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.52, y: 2.53}
+  m_Offset: {x: 0.52, y: 2.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -269,7 +269,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.19, y: 5.35}
+  m_Size: {x: 3.19, y: 4.9}
   m_EdgeRadius: 0
 --- !u!61 &6290578975927813480
 BoxCollider2D:
@@ -303,7 +303,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.76, y: 2.46}
+  m_Offset: {x: 0.76, y: 2.01}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -316,6 +316,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.22, y: 4}
   m_EdgeRadius: 0
+--- !u!50 &7097501497987393888
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312320201983474571}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1227462511118341461
 GameObject:
   m_ObjectHideFlags: 0

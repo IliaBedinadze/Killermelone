@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
     public IReadOnlyReactiveProperty<float> Farm => _playerReactiveStats.Farm;
     public IReadOnlyReactiveProperty<int> ashNum => _playerReactiveStats.AshAmount;
 
+    public float CurrentSpeedMultiplier => _playerReactiveStats.Speed.Value;
+    public float CurrentDamageMultiplier => _playerReactiveStats.Damage.Value;
+    public float CurrentAttackSpeedMultiplier => _playerReactiveStats.AttackSpeed.Value;
+    public int CurrentPierceAddition => _playerReactiveStats.Pierce.Value;
+    public float CurrentVelocityMultiplier => _playerReactiveStats.Velocity.Value;
+
+
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     // Dependencies
@@ -116,8 +123,8 @@ public class Player : MonoBehaviour
             // Recieve from enemy
             if (fromEnemy)
             {
-                _playerReactiveStats.AshAmount.Value += (int)(amount * _state.TakeCurrentScale);
-                _state.VictoryStats.AshCollected += (int)(amount * _state.TakeCurrentScale);        //For game over panel only from kill ash scored
+                _playerReactiveStats.AshAmount.Value += (int)((amount * _state.TakeCurrentScale) + _playerReactiveStats.Farm.Value);
+                _state.VictoryStats.AshCollected += (int)((amount * _state.TakeCurrentScale) + _playerReactiveStats.Farm.Value);        //For game over panel only from kill ash scored
             }
             // Other sources
             else
@@ -178,5 +185,10 @@ public class Player : MonoBehaviour
         var weaponLeft = _weaponList.Weapons.Find(x => x.name == weaponNames[0]);
         var weaponRight = _weaponList.Weapons.Find(x => x.name == weaponNames[1]);
         InitializeWeapon(weaponLeft, weaponRight);
+    }
+    // change player stats
+    public void PlayerStatsChange(PlayerStats stats)
+    {
+        _playerReactiveStats.ChangePlayerStats(stats);
     }
 }

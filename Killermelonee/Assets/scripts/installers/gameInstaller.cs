@@ -18,6 +18,7 @@ public class gameInstaller : MonoInstaller
     [SerializeField] private SceneManagementSc _sceneManagment;
     [SerializeField] private InfoPanel _infoPanel;
     [SerializeField] private DescriptionPanel _descriptionPanel;
+    [SerializeField] private ItemInfoPanel _itemInfoPanel;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private EnemySpawnerController _enemySpawnerController;
     [SerializeField] private AudioRecorder _audioRecorder;
@@ -32,6 +33,16 @@ public class gameInstaller : MonoInstaller
 
         var items = JsonUtility.FromJson<ItemList>(ItemData.text);
         Container.Bind<ItemList>().FromInstance(items).AsSingle();
+
+        Container.BindFactory<ItemStats, ItemInfoPanel, ItemInfoPanelFactory>().FromMethod((container, itemStats) =>
+        {
+            var panel = container.InstantiatePrefab(_itemInfoPanel);
+            var info = panel.GetComponent<ItemInfoPanel>();
+
+            info.SetStats(itemStats);
+            container.Inject(info);
+            return info;
+        });
 
         Container.BindFactory<string, DescriptionPanel,DescriptionPanelFactory>().FromMethod((container, text) =>
         {

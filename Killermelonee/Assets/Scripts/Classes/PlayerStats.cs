@@ -18,14 +18,15 @@ public class PlayerStats
     public int MaxHP = 0;
     public float XP = 0;
     public float MaxXP = 0;
-    public int Pierce = 0;
     public int AshAmount = 0;
+    //additions
+    public int Pierce = 0;
+    public float Farm = 0;
     //Multipliers
     public float Speed = 0;
     public float Damage = 0;
     public float AttackSpeed = 0;
     public float Velocity = 0;
-    public float Farm = 0;
 }
 public class PlayerReactiveStats
 {
@@ -72,5 +73,16 @@ public class PlayerReactiveStats
             Farm = Farm.Value,
             AshAmount = AshAmount.Value
         };
+    }
+    public void ChangePlayerStats(PlayerStats stats)
+    {
+        MaxHP.Value += stats.MaxHP;
+        HP.Value = HP.Value + stats.HP > MaxHP.Value ? MaxHP.Value : HP.Value + stats.HP;
+        Speed.Value += stats.Speed;
+        Damage.Value += stats.Damage;
+        AttackSpeed.Value += stats.AttackSpeed;
+        Velocity.Value += stats.Velocity;
+        Farm.Value += stats.Farm;
+        AshAmount.Value += stats.AshAmount;
     }
 }

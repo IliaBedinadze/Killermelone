@@ -12,6 +12,9 @@ public class GameState : MonoBehaviour
 {
     [NonSerialized] public Save SaveData = new Save();
     [NonSerialized] public VictoryStats VictoryStats = new VictoryStats(0,0,0,0,0);
+
+    [SerializeField] private GameObject[] playGrounds;
+
     private UI _ui;
     private RoundStats[] _roundsData;
     private Player _player;
@@ -32,6 +35,7 @@ public class GameState : MonoBehaviour
     }
     public enum State
     {
+        choosing,
         playing,
         pause,
         roundOver,
@@ -54,9 +58,10 @@ public class GameState : MonoBehaviour
     private bool _roundUp = false;
     private void Start()
     {
+        //var i = UnityEngine.Random.Range(0, playGrounds.Length);
+        //Instantiate(playGrounds[i]);
         if (ContinueState)
         {
-            _audioController.StartStopSong("play", _audioRecorder.ClipForRound);
             string path = Application.persistentDataPath + "/save.json";
             if (File.Exists(Application.persistentDataPath + "/save.json"))
             {
@@ -69,11 +74,12 @@ public class GameState : MonoBehaviour
                 _player.InitializePlayerData(SaveData.PlayerStats);
                 _management.Continue = false;
             }
+            _audioController.StartStopSong("play", _audioRecorder.ClipForRound);
         }
         else
         {
             _ui.ChooseWeaponPanelActivation();
-            state = State.pause;
+            state = State.choosing;
         }
         SaveGame();
         _ui.SetRound(_currentRound + 1);

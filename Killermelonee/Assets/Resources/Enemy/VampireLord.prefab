@@ -1073,7 +1073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78597feda2d8c4e43adf278745399d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: VampireLord
   deathClip: {fileID: 8300000, guid: 7082514b9d5f45e4287b79c2a9ef4513, type: 3}
   shootPoint: {fileID: 2327472877553936697}
   shootRotationPoint: {fileID: 7012826021625796493}
@@ -1168,7 +1167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23, y: 3.41}
+  m_Offset: {x: -0.11, y: 4.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1179,7 +1178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.77, y: 6.03}
+  m_Size: {x: 3.2, y: 7.96}
   m_EdgeRadius: 0
 --- !u!50 &-3549756691322129013
 Rigidbody2D:

@@ -144,7 +144,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5491948, y: 2.7092686}
+  m_Offset: {x: 0.43, y: 2.14}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -155,7 +155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0700893, y: 1.8395045}
+  m_Size: {x: 1.79, y: 4.16}
   m_EdgeRadius: 0
 --- !u!61 &5430492270729269283
 BoxCollider2D:
@@ -200,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.73, y: 4.51}
+  m_Size: {x: 2.73, y: 4.75}
   m_EdgeRadius: 0
 --- !u!114 &-7983398303928419421
 MonoBehaviour:
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9572b33b5ed4cf4c91c38c28b5721e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Zombie
   deathClip: {fileID: 8300000, guid: 7082514b9d5f45e4287b79c2a9ef4513, type: 3}
 --- !u!50 &-7265219479533336258
 Rigidbody2D:

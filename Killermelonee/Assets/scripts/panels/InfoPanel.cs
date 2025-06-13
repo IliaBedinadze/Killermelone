@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class InfoPanel : MonoBehaviour
 {
@@ -17,8 +18,15 @@ public class InfoPanel : MonoBehaviour
     private bool delay = false;
 
     private string _damageStringFormat = "damage:{0} {1}";
-    private string _attackRateStringFormat = "attackrate:{0} {1}";
+    private string _attackRateStringFormat = "attackrate:{0:F2} {1}";
     private string _pierceAmountStringFormat = "pierce:{0} {1}";
+
+    private Player _player;
+    [Inject]
+    public void Constructor(Player player)
+    {
+        _player = player;
+    }
     public void SetData(WeaponData data)
     {
         image.sprite = Resources.Load<Sprite>(data.spritePath);
@@ -27,22 +35,37 @@ public class InfoPanel : MonoBehaviour
         description.text = data.description;
         if(data.currentLevel != 4)
         {
-            damage.text = string.Format(_damageStringFormat, data.TakeCurrentDamage, "=> " + data.TakeNextDamage);
-            attackRate.text = string.Format(_attackRateStringFormat, data.TakeCurrentAR, "=> " + data.TakeNextAR); 
+            damage.text = string.Format(_damageStringFormat,
+                (int)(data.TakeCurrentDamage * _player.CurrentDamageMultiplier),
+                "=> " + (int)(data.TakeNextDamage * _player.CurrentDamageMultiplier));
+            attackRate.text = string.Format(_attackRateStringFormat,
+                (AttackRate(true,data)),
+                "=> " + (AttackRate(false, data).ToString("F2"))); 
             if(data.TakeCurrentPierceAmount == -5)
-                pierceAmount.text = string.Format(_pierceAmountStringFormat,"eternal", ""); 
+                pierceAmount.text = string.Format(_pierceAmountStringFormat,"eternal", "");
             else
-                pierceAmount.text = string.Format(_pierceAmountStringFormat, data.TakeCurrentPierceAmount, "=> " + data.TakeNextPierceAmount); 
+            {
+                int i = data.TakeNextPierceAmount + _player.CurrentPierceAddition;
+                pierceAmount.text = string.Format(_pierceAmountStringFormat,
+                    data.TakeCurrentPierceAmount + _player.CurrentPierceAddition,
+                    "=> " + i);
 
+            }
         }
         else
         {
-            damage.text = string.Format(_damageStringFormat, data.TakeCurrentDamage, "(max)");
-            attackRate.text = string.Format(_attackRateStringFormat, data.TakeCurrentAR, "(max)");
+            damage.text = string.Format(_damageStringFormat,
+                (int)(data.TakeCurrentDamage * _player.CurrentDamageMultiplier),
+                "(max)");
+            attackRate.text = string.Format(_attackRateStringFormat,
+                (AttackRate(true, data)),
+                "(max)");
             if (data.TakeCurrentPierceAmount == -5)
                 pierceAmount.text = string.Format(_pierceAmountStringFormat, "eternal", "");
             else
-                pierceAmount.text = string.Format(_pierceAmountStringFormat, data.TakeCurrentPierceAmount, "(max)");
+                pierceAmount.text = string.Format(_pierceAmountStringFormat,
+                    data.TakeCurrentPierceAmount + _player.CurrentPierceAddition,
+                    "(max)");
         }
     }
 
@@ -67,5 +90,32 @@ public class InfoPanel : MonoBehaviour
             Destroy(gameObject);
         }
         delay = false;
+    }
+
+    private float AttackRate(bool current,WeaponData data)
+    {
+        if (_player.CurrentAttackSpeedMultiplier >= 1)
+        {
+            if(current) 
+                return data.TakeCurrentAR / _player.CurrentAttackSpeedMultiplier;
+            else
+                return data.TakeNextAR / _player.CurrentAttackSpeedMultiplier;
+
+        }
+        else if(_player.CurrentAttackSpeedMultiplier < 1 && _player.CurrentAttackSpeedMultiplier >= 0)
+        {
+            if(current)
+                return data.TakeCurrentAR * (1 + (1 - _player.CurrentAttackSpeedMultiplier));
+            else
+                return data.TakeNextAR * (1 + (1 - _player.CurrentAttackSpeedMultiplier));
+
+        }
+        else
+        {
+            if(current)
+                return data.TakeCurrentAR * (1 + Mathf.Abs(_player.CurrentAttackSpeedMultiplier));
+            else
+                return data.TakeNextAR * (1 + Mathf.Abs(_player.CurrentAttackSpeedMultiplier));
+        }
     }
 }

@@ -15,8 +15,10 @@ public class ItemList
 public class ItemStats
 {
     public string Name;
+    public string Rarity;
     public int Price;
-    public string Description;
+    public string[] PlusStats;
+    public string[] MinusStats;
     public string SpritePath;
     public PlayerStats PlayerStats;
 }

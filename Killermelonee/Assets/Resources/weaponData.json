@@ -2,7 +2,7 @@
     "Weapons": [
         {
             "name": "pistol",
-            "damage": [ 12, 15, 19, 23, 30 ],
+            "damage": [ 14, 16, 19, 23, 27 ],
             "attackRate": [ 0.85, 0.8, 0.7, 0.6, 0.45 ],
             "lifeTime": [ 1.6, 1.9, 2.2, 2.5, 3 ],
             "bulletSpeed": [ 30, 30, 35, 40, 50 ],
@@ -11,12 +11,12 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "just a standart pistol.",
-            "price": [ 50, 120, 240, 430, 800 ],
-            "pierceAmount": [ 1, 2, 2, 2, 3 ]
+            "price": [ 30, 80, 150, 240, 350 ],
+            "pierceAmount": [ 1, 2, 2, 3, 3 ]
         },
         {
             "name": "ak-47",
-            "damage": [ 7, 9, 12, 16, 20 ],
+            "damage": [ 9, 11, 14, 18, 22 ],
             "attackRate": [ 0.65, 0.6, 0.53, 0.48, 0.34 ],
             "lifeTime": [ 1.5, 1.7, 2, 2.4, 3 ],
             "bulletSpeed": [ 40, 40, 45, 50, 50 ],
@@ -25,13 +25,13 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "apple kalashnikow invited a perfect weapon, after many years still effective agains zombies!",
-            "price": [ 45, 110, 230, 400, 750 ],
-            "pierceAmount": [ 1, 1, 1, 1, 1]
+            "price": [ 35, 90, 160, 250, 365 ],
+            "pierceAmount": [ 1, 1, 1, 2, 2]
         },
         {
             "name": "awp",
-            "damage": [ 21, 27, 34, 42, 55 ],
-            "attackRate": [ 1.3, 1.23, 1.12, 1.02, 0.91 ],
+            "damage": [ 20, 26, 32, 39, 46 ],
+            "attackRate": [ 1.4, 1.33, 1.26, 1.18, 1.08 ],
             "lifeTime": [ 2, 2.2, 2.4, 2.7, 3 ],
             "bulletSpeed": [ 50, 50, 60, 60, 80 ],
             "spritePath": "icons/gun1",
@@ -39,12 +39,12 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "long range,fast and strong. but have slow reload, if you are a sniper and do not miss,it yours.",
-            "price": [ 50, 120, 240, 430, 800 ],
-            "pierceAmount": [ 2, 3, 3, 3, 4 ]
+            "price": [ 50, 100, 160, 240, 380 ],
+            "pierceAmount": [ 1, 2, 2, 3, 3 ]
         },
         {
             "name": "miniGun",
-            "damage": [ 5, 6, 8, 10, 15 ],
+            "damage": [ 5, 7, 9, 12, 15 ],
             "attackRate": [ 0.35, 0.32, 0.29, 0.26, 0.2 ],
             "lifeTime": [ 1.1, 1.3, 1.5, 1.7, 2 ],
             "bulletSpeed": [ 30, 30, 35, 35, 40 ],
@@ -53,13 +53,13 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "a rain of bullets, small but bullets!",
-            "price": [ 50, 120, 240, 430, 800 ],
+            "price": [ 40, 90, 145, 250, 360 ],
             "pierceAmount": [ 1, 1, 1, 1, 1 ]
         },
         {
             "name": "revolver",
-            "damage": [ 20, 25, 33, 43, 55 ],
-            "attackRate": [ 1, 0.95, 0.9, 0.8, 0.7 ],
+            "damage": [ 17, 22, 27, 33, 39 ],
+            "attackRate": [ 1.1, 1.05, 1, 0.93, 0.87 ],
             "lifeTime": [ 1.3, 1.4, 1.6, 1.8, 2 ],
             "bulletSpeed": [ 40, 40, 45, 50, 55 ],
             "spritePath": "icons/gun3",
@@ -67,13 +67,13 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "If zombies had honor, I would challenge them to a duel like in the Wild West.",
-            "price": [ 50, 140, 270, 500, 900 ],
-            "pierceAmount": [ 1, 2, 2, 3, 4 ]
+            "price": [ 40, 90, 145, 250, 360 ],
+            "pierceAmount": [ 1, 2, 2, 3, 3 ]
         },
         {
             "name": "plasmaGun",
-            "damage": [ 20, 26, 33, 40, 48 ],
-            "attackRate": [ 1.5, 1.45, 1.38, 1.3, 1.1 ],
+            "damage": [ 17, 21, 26, 31, 36 ],
+            "attackRate": [ 1.5, 1.45, 1.39, 1.32, 1.22 ],
             "lifeTime": [ 1.2, 1.3, 1.4, 1.7, 2 ],
             "bulletSpeed": [ 20, 20, 25, 25, 30 ],
             "spritePath": "icons/spacegun3",
@@ -81,8 +81,8 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "before civilization fall, we were able to fly in space and ...",
-            "price": [ 250, 500, 800, 1200, 1700 ],
-            "pierceAmount": [ 6, 7, 8, 9, 10 ]
+            "price": [ 100, 200, 350, 560, 900 ],
+            "pierceAmount": [ 4, 4, 5, 5, 6 ]
         },
         {
             "name": "laserPistol",
@@ -95,12 +95,12 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "standart weapon for space soldiers.",
-            "price": [ 190, 400, 700, 1100, 1500 ],
+            "price": [ 100, 200, 350, 560, 900 ],
             "pierceAmount": [ -5, -5, -5, -5, -5 ]
         },
         {
             "name": "smasher",
-            "damage": [ 18, 24, 30, 36, 42 ],
+            "damage": [ 18, 23, 28, 33, 38 ],
             "attackRate": [ 1.1, 1.05, 1, 0.95, 0.85 ],
             "lifeTime": [ 0.8, 0.9, 1.1, 1.3, 1.5 ],
             "bulletSpeed": [ 20, 25, 25, 30, 35 ],
@@ -109,7 +109,7 @@
             "currentLevel": 0,
             "maxLevel": 5,
             "description": "how can baloon fists be so painful?",
-            "price": [ 350, 750, 1200, 1800, 2400 ],
+            "price": [ 100, 200, 350, 560, 900 ],
             "pierceAmount": [ -5, -5, -5 , -5, -5 ]
         }
     ]

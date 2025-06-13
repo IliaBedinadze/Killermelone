@@ -100,7 +100,6 @@ public class VampireLord : EnemyBase
             if(!t.GetComponent<CollisionTriggerHandler>()._isTriggered)
                 list.Add(t);
         }
-        Debug.Log(list.Count);
         int i = Random.Range(0, list.Count);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float snootAnimation = stateInfo.length/stateInfo.length;
